@@ -17,7 +17,9 @@ class CustomCalender extends StatefulWidget {
 
 class _MyCalenderState extends State<CustomCalender> {
   DateTime selectedDay = DateTime.now();
-
+  final BoxDecoration _buildBoxDecoration = const BoxDecoration(
+    shape: BoxShape.rectangle,
+  );
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
@@ -60,9 +62,17 @@ class _MyCalenderState extends State<CustomCalender> {
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(10),
         ),
-        defaultDecoration: const BoxDecoration(
-          shape: BoxShape.rectangle,
-        ),
+        defaultDecoration: _buildBoxDecoration,
+        selectedDecoration: _buildBoxDecoration,
+        markerDecoration: _buildBoxDecoration,
+        holidayDecoration: _buildBoxDecoration,
+        outsideDecoration: _buildBoxDecoration,
+        weekendDecoration: _buildBoxDecoration,
+        rangeEndDecoration: _buildBoxDecoration,
+        rowDecoration: _buildBoxDecoration,
+        withinRangeDecoration: _buildBoxDecoration,
+        disabledDecoration: _buildBoxDecoration,
+        rangeStartDecoration: _buildBoxDecoration,
         todayTextStyle: StyleManager.fontExtraBold14White,
         weekendTextStyle: StyleManager.fontRegular14grey,
         defaultTextStyle: StyleManager.fontExtraBold14Black,
