@@ -40,5 +40,5 @@ class AppSize {
   static const padding30 = 30.0;
   static const padding40 = 40.0;
   static const padding60 = 60.0;
-  static const screenPadding = padding15;
+  static const screenPadding = padding20;
 }

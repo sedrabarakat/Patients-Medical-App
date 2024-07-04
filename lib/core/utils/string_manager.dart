@@ -11,7 +11,7 @@ class AppString {
 
 //verification code screen
   static const verifyCode = 'Verification Code';
-  static const enterVerifyCode = 'Enter the code you receive';
+  static const enterVerifyCode = 'Please entre Code send to ';
   static const invalidVerifyCode = "Invalid verification code";
 
   //Sign Up screen

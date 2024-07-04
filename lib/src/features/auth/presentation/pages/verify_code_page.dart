@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
+import '../../../../../core/utils/assets_manager.dart';
 import '../../../../../core/utils/color_manager.dart';
 import '../../../../../core/helper/dimension_manager.dart';
 import '../cubit/auth_cubit.dart';
@@ -23,7 +25,7 @@ class VerificationScreen extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  content: Lottie.asset('assets/lottie/success.json'),
+                  content: Lottie.asset(AssetsManager.success),
                 );
               },
             );
@@ -41,42 +43,55 @@ class VerificationScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppSize.screenPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Gap(60),
-                    const Text(
-                      AppString.verifyCode,
-                      style: StyleManager.fontBold24Black,
-                    ),
-                    const Gap(70),
-                    const Text(
-                      AppString.enterVerifyCode,
-                      style: StyleManager.fontRegular16Black,
-                    ),
-                    const Gap(20),
-                    OtpTextField(
-                      fieldWidth: DimensionsHelper.screenWidth(context) / 8,
-                      numberOfFields: 6,
-                      borderColor: ColorsManager.primary,
-                      focusedBorderColor: ColorsManager.primary,
-                      enabledBorderColor: ColorsManager.grey,
-                      borderRadius: BorderRadius.circular(AppSize.size15),
-                      showFieldAsBox: true,
-                      filled: true,
-                      onCodeChanged: (String code) {},
-                      onSubmit: (String verificationCode) {
-                        cubit.verifyCode(verificationCode);
-                      },
-                    ),
-                    const Gap(20),
-                    if (state is VerifyCodeFailureState) ...[
-                      Text(
-                        state.message,
-                        style: const TextStyle(color: Colors.red),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Gap(60),
+                      SvgPicture.asset(
+                        AssetsManager.verificationCode,
+                        height: DimensionsHelper.heightPercentage(context, 30),
                       ),
+                      Gap(DimensionsHelper.heightPercentage(context, 10)),
+                      Text(
+                        AppString.verifyCode,
+                        style: StyleManager.fontExtraPrimary28Black,
+                      ),
+                      Gap(DimensionsHelper.heightPercentage(context, 1)),
+                      const Text(
+                        AppString.enterVerifyCode,
+                        style: StyleManager.fontRegular14grey,
+                      ),
+                      const Text(
+                        '0999999999',
+                        style: StyleManager.fontRegular14Primary,
+                      ),
+                      const Gap(20),
+                      OtpTextField(
+                        fieldWidth: DimensionsHelper.widthPercentage(context, 10),
+                        fieldHeight: DimensionsHelper.heightPercentage(context, 10),
+                        numberOfFields: 6,
+                        borderColor: ColorsManager.primary,
+                        focusedBorderColor: ColorsManager.primary,
+                        enabledBorderColor: ColorsManager.grey,
+                        borderRadius: BorderRadius.circular(AppSize.size15),
+                        showFieldAsBox: true,
+                        filled: true,
+                        onCodeChanged: (String code) {},
+                        onSubmit: (String verificationCode) {
+                          cubit.verifyCode(verificationCode);
+                        },
+                      ),
+                      const Gap(20),
+                      if (state is VerifyCodeFailureState) ...[
+                        Text(
+                          state.message,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),

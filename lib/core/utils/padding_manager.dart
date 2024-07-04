@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import 'dimension_manager.dart';
+import '../helper/dimension_manager.dart';
 
 abstract class AppPadding {
   static const screenPadding =
