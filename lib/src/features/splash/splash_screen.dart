@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:patient_app/core/utils/app_string.dart';
+import 'package:patient_app/core/utils/string_manager.dart';
 import 'package:patient_app/core/utils/assets_manager.dart';
 import 'package:patient_app/core/utils/color_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
@@ -31,9 +31,9 @@ class SplashScreen extends StatelessWidget {
             const SizedBox(
               height: AppSize.s16,
             ),
-            Text(
+            const Text(
               AppString.appName,
-              style: StyleManager.fontRegular20,
+              style: StyleManager.fontRegular20White,
             )
           ],
         ),

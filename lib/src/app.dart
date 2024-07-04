@@ -10,7 +10,7 @@ class PatientApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeManager.myTheme,
-      routerConfig: AppRouter.router,
+      routerConfig:  goRouter ,
     );
   }
 }

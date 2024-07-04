@@ -14,3 +14,33 @@ class DimensionsManager {
   static double radius(BuildContext context, double percentage) =>
       screenHeight(context) * percentage / 100;
 }
+
+class AppSize{
+
+  static const size10 = 10.0;
+  static const size15 = 15.0;
+  static const size20 = 20.0;
+  static const size25 = 25.0;
+  static const size30 = 30.0;
+  static const size32 = 32.0;
+  static const size40 = 40.0;
+  static const size45 = 45.0;
+  static const size50 = 50.0;
+  static const size60 = 60.0;
+  static const size70 = 70.0;
+  static const size80 = 80.0;
+  static const size100 = 100.0;
+  static const size140 = 140.0;
+
+  // padding
+  static const padding5 = 5.0;
+  static const padding10 = 10.0;
+  static const padding15 = 15.0;
+  static const padding20 = 20.0;
+  static const padding25 = 25.0;
+  static const padding30 = 30.0;
+  static const padding40 = 40.0;
+  static const padding60 = 60.0;
+  static const screenPadding = padding15;
+
+}
