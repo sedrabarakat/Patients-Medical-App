@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DimensionsManager {
+class DimensionsHelper {
   static double screenHeight(BuildContext context) =>
       MediaQuery.sizeOf(context).height;
   static double screenWidth(BuildContext context) =>
@@ -15,8 +15,7 @@ class DimensionsManager {
       screenHeight(context) * percentage / 100;
 }
 
-class AppSize{
-
+class AppSize {
   static const size10 = 10.0;
   static const size15 = 15.0;
   static const size20 = 20.0;
@@ -42,5 +41,4 @@ class AppSize{
   static const padding40 = 40.0;
   static const padding60 = 60.0;
   static const screenPadding = padding15;
-
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/utils/style_manager.dart';
 
 class CustomTextField extends StatefulWidget {
   final String hintText;
@@ -49,6 +50,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: ColorsManager.primary,
       focusNode: _focusNode,
       obscureText: widget.obscureText == null || widget.obscureText == false
           ? false
@@ -59,30 +61,36 @@ class _CustomTextFieldState extends State<CustomTextField> {
       validator: widget.valid,
       controller: widget.myController,
       decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle:
-              TextStyle(fontSize: MediaQuery.of(context).size.width / 35),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          contentPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height / 100,
-              horizontal: MediaQuery.of(context).size.width / 15),
-          label: Text(widget.labelText),
-          suffixIcon: InkWell(
-            onTap: widget.onTapIcon,
-            child: Icon(
-              widget.iconData,
-              color: _focusNode.hasFocus? ColorsManager.primary:ColorsManager.grey,
-            ),
+        hintText: widget.hintText,
+        hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.width / 35),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height / 100,
+          horizontal: MediaQuery.of(context).size.width / 15,
+        ),
+        labelText: widget.labelText,
+        labelStyle: StyleManager.fontRegular14Black,
+        floatingLabelStyle: StyleManager.fontRegular14Primary,
+        suffixIcon: InkWell(
+          onTap: widget.onTapIcon,
+          child: Icon(
+            widget.iconData,
+            color: _focusNode.hasFocus
+                ? ColorsManager.primary
+                : ColorsManager.grey,
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            color: ColorsManager.primary,
+            width: 2,
           ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(
-                color: ColorsManager.primary,
-                width: 2,
-              ))),
+        ),
+      ),
     );
   }
 }

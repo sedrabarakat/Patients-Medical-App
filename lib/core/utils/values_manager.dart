@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AppMargin {
   static const double m4 = 4.0;
   static const double m6 = 6.0;
@@ -20,6 +22,10 @@ class AppMargin {
 }
 
 class AppPadding {
+  static const EdgeInsets appPadding = EdgeInsets.symmetric(
+    horizontal: AppPadding.p20,
+    vertical: AppPadding.p16,
+  );
   static const double p2 = 2.0;
   static const double p4 = 4.0;
   static const double p6 = 6.0;

@@ -4,7 +4,7 @@ import 'dimension_manager.dart';
 
 abstract class AppPadding {
   static const screenPadding =
-  EdgeInsets.symmetric(horizontal: AppSize.screenPadding);
+      EdgeInsets.symmetric(horizontal: AppSize.screenPadding);
   static const screenPaddingAll = EdgeInsets.all(AppSize.screenPadding);
   static const screenPaddingNoTop = EdgeInsets.fromLTRB(
     AppSize.screenPadding,
