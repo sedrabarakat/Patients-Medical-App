@@ -5,6 +5,7 @@ class ColorsManager {
 
   static const primary = Color(0xFF0FA4A0);
   static const primaryDark = Color.fromARGB(255, 10, 108, 105);
+  static Color tealLightDark = Colors.teal.shade600;
   // static const primaryDark = Color(0XFF181461);
   static const white = Color(0xFFFFFFFF);
   static const black = Colors.black;
