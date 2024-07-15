@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
+import 'package:patient_app/core/languages/app_localizations_ar.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
@@ -39,19 +41,21 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const Gap(10),
-                  const Text(
-                    AppString.loginWelcome,
+                  Text(
+                    AppLocalizations.of(context)!.loginWelcome,
                     style: StyleManager.fontBold24Black,
                   ),
-                  const Text(AppString.loginSubWelcome,
-                      style: StyleManager.fontRegular14grey),
+                  Text(
+                    AppLocalizations.of(context)!.loginSubWelcome,
+                    style: StyleManager.fontRegular14grey,
+                  ),
                   const Gap(50),
                   CustomTextField(
                     valid: (value) => ValidatorManager().validatePhone(value!),
-                    labelText: AppString.textFieldPhoneLabel,
+                    labelText: AppLocalizations.of(context)!.phoneNumber,
                     iconData: Icons.phone_android,
                     myController: cubit.phoneController,
-                    hintText: AppString.textFieldPhoneHint,
+                    hintText: AppLocalizations.of(context)!.phoneHint,
                     isNumber: true,
                   ),
                   // SizedBox(height: MediaQuery.of(context).size.height/20,),
@@ -60,12 +64,12 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       cubit.login();
                     },
-                    label: AppString.buttonLoginText,
+                    label: AppLocalizations.of(context)!.login,
                   ),
                   const Gap(15),
                   CustomRowTextButton(
-                    text: AppString.doNotHaveAnAccount,
-                    btnText: AppString.createAccount,
+                    text: AppLocalizations.of(context)!.dontHaveAccount,
+                    btnText: AppLocalizations.of(context)!.signup,
                     onTap: () {
                       goRouter.pushReplacementNamed(AppRoute.register.name);
                     },

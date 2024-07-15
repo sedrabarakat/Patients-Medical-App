@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
@@ -37,54 +38,54 @@ class SignUpPage extends StatelessWidget {
                 padding: AppPadding.screenPadding,
                 children: [
                   const Gap(60),
-                  const Text(
-                    AppString.signUp,
+                  Text(
+                    AppLocalizations.of(context)!.signup,
                     style: StyleManager.fontBold24Black,
                   ),
                   const Gap(30),
                   CustomTextField(
                     valid: (value) => ValidatorManager().validateName(value!),
-                    labelText: AppString.textFieldFullNameLabel,
+                    labelText: AppLocalizations.of(context)!.fullName,
                     iconData: Icons.drive_file_rename_outline,
                     myController: cubit.fullNameController,
-                    hintText: AppString.textFieldFullNameHint,
+                    hintText: AppLocalizations.of(context)!.fullNameHint,
                     isNumber: false,
                   ),
                   const Gap(15),
                   CustomTextField(
                     valid: (value) => ValidatorManager().validatePhone(value!),
-                    labelText: AppString.textFieldPhoneLabel,
+                    labelText: AppLocalizations.of(context)!.phoneNumber,
                     iconData: Icons.phone,
                     myController: cubit.phoneController,
-                    hintText: AppString.textFieldPhoneHint,
+                    hintText: AppLocalizations.of(context)!.phoneHint,
                     isNumber: true,
                   ),
                   const Gap(15),
                   CustomTextField(
                     valid: (value) => ValidatorManager().validateName(value!),
                     onTapIcon: () => cubit.toSelectDate(context),
-                    labelText: AppString.textFieldBirthDateLabel,
+                    labelText: AppLocalizations.of(context)!.birthDate,
                     iconData: Icons.calendar_today,
                     myController: cubit.dateController,
-                    hintText: AppString.textFieldBirthDateHint,
+                    hintText: AppLocalizations.of(context)!.birthDateHint,
                     isNumber: false,
                   ),
                   const Gap(15),
                   CustomTextField(
                     valid: (value) => ValidatorManager().validateName(value!),
-                    labelText: AppString.textFieldProfessionLabel,
+                    labelText: AppLocalizations.of(context)!.profession,
                     iconData: Icons.work_outline_outlined,
                     myController: cubit.professionController,
-                    hintText: AppString.textFieldProfessionHint,
+                    hintText: AppLocalizations.of(context)!.professionHint,
                     isNumber: false,
                   ),
                   const Gap(15),
                   CustomTextField(
                     valid: (value) => ValidatorManager().validateName(value!),
-                    labelText: AppString.textFieldHabitsLabel,
+                    labelText: AppLocalizations.of(context)!.habits,
                     iconData: Icons.self_improvement,
                     myController: cubit.habitsController,
-                    hintText: AppString.textFieldHabitsHint,
+                    hintText: AppLocalizations.of(context)!.habitsHint,
                     isNumber: false,
                   ),
                   const Gap(15),
@@ -99,7 +100,7 @@ class SignUpPage extends StatelessWidget {
                         vertical: DimensionsHelper.screenHeight(context) / 100,
                         horizontal: DimensionsHelper.screenWidth(context) / 15,
                       ),
-                      labelText: AppString.textFieldMaritalStatusLabel,
+                      labelText: AppLocalizations.of(context)!.maritalStatus,
                       floatingLabelStyle: StyleManager.fontRegular14Primary,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -154,8 +155,10 @@ class SignUpPage extends StatelessWidget {
                           activeColor: ColorsManager.primary,
                         );
                       }),
-                      const Text(AppString.diabetes,
-                          style: StyleManager.fontRegular14Black),
+                      Text(
+                        AppLocalizations.of(context)!.iHaveDiabetes,
+                        style: StyleManager.fontRegular14Black,
+                      ),
                     ],
                   ),
                   Row(
@@ -170,8 +173,10 @@ class SignUpPage extends StatelessWidget {
                           activeColor: ColorsManager.primary,
                         );
                       }),
-                      const Text(AppString.bloodPressure,
-                          style: StyleManager.fontRegular14Black),
+                      Text(
+                        AppLocalizations.of(context)!.iHaveBloodPressure,
+                        style: StyleManager.fontRegular14Black,
+                      ),
                     ],
                   ),
                   const Gap(20),
@@ -179,11 +184,11 @@ class SignUpPage extends StatelessWidget {
                     onPressed: () {
                       cubit.login();
                     },
-                    label: AppString.buttonSignUpText,
+                    label: AppLocalizations.of(context)!.signup,
                   ),
                   CustomRowTextButton(
-                    text: AppString.alreadyHaveAccount,
-                    btnText: AppString.buttonLoginText,
+                    text: AppLocalizations.of(context)!.alreadyHaveAccount,
+                    btnText: AppLocalizations.of(context)!.login,
                     onTap: () {
                       goRouter.pushReplacementNamed(AppRoute.login.name);
                     },

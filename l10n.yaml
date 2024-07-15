@@ -1,0 +1,5 @@
+arb-dir: lib/core/languages/l10n
+template-arb-file: intl_en.arb
+output-dir: lib/core/languages
+synthetic-package: false
+output-localization-file: app_localizations.dart
