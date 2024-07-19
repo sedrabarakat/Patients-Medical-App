@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_app/src/features/auth/presentation/pages/login_page.dart';
 import 'package:patient_app/src/features/favoriate/presentation/pages/favorite_page.dart';
 import 'package:patient_app/src/features/home/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
