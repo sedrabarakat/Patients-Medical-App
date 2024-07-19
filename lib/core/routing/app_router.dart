@@ -4,6 +4,7 @@ import 'package:patient_app/src/features/auth/presentation/pages/login_page.dart
 import 'package:patient_app/src/features/splash/splash_screen.dart';
 import '../../src/features/auth/presentation/pages/sign_up_page.dart';
 import '../../src/features/auth/presentation/pages/verify_code_page.dart';
+import '../../src/features/home/presentation/pages/home_screen_bottom_nav_bar.dart';
 
 enum AppRoute {
   splash,
@@ -29,7 +30,7 @@ final goRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const SplashScreen(),
+      builder: (context, state) =>const HomeScreenBottomNavBar(),
       routes: routes.entries
           .map((entry) => GoRoute(
               path: entry.key.name,

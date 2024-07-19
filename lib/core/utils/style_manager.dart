@@ -25,6 +25,13 @@ abstract class StyleManager {
     fontSize: 14,
     color: ColorsManager.white,
   );
+
+  static TextStyle fontExtraBold20Black = const TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 20,
+    color: ColorsManager.black,
+  );
+
   /*>>>>>>>>>> Bold <<<<<<<<<<*/
   static const TextStyle fontBold40White = TextStyle(
     fontFamily: 'Poppins-bold',
@@ -56,7 +63,11 @@ abstract class StyleManager {
     fontWeight: FontWeight.w400,
     color: ColorsManager.white,
   );
-
+  static const TextStyle fontRegular16primary = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: ColorsManager.primary,
+  );
   static const TextStyle fontRegular16Black = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
@@ -75,6 +86,11 @@ abstract class StyleManager {
     color: ColorsManager.black,
   );
 
+  static const TextStyle fontRegular12Black = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: ColorsManager.black,
+  );
   static const TextStyle fontRegular14Primary = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,

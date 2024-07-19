@@ -43,11 +43,6 @@ class AuthCubit extends Cubit<AuthState> {
     return super.close();
   }
 
-  void _update(AuthState state) {
-    if (isClosed) return;
-    emit(state);
-  }
-
   void login() {
     goRouter.pushReplacementNamed(AppRoute.verifyCode.name);
   }

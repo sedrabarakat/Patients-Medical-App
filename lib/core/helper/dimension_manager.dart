@@ -16,6 +16,8 @@ class DimensionsHelper {
 }
 
 class AppSize {
+  static const  s1_5 = 1.5;
+  static const  s2_5 = 2.5;
   static const size10 = 10.0;
   static const size15 = 15.0;
   static const size20 = 20.0;

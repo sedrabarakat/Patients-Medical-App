@@ -12,4 +12,10 @@ class IconManager {
     size: 16,
     color: ColorsManager.black,
   );
+  static const homeIcon =  Icon(Icons.home_outlined);
+  static const profileIcon = Icon(Icons.person_2_outlined);
+  static const favoriteIcon =Icon(Icons.favorite_outline_sharp);
+  static const settingIcon = Icon(Icons.settings_applications_outlined);
+  static const searchIcon = Icon(Icons.search_outlined);
+  static const notificationIcon =  Icon(Icons.notifications, size: 20,);
 }

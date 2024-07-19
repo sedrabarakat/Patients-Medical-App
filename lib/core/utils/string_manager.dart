@@ -36,4 +36,17 @@ class AppString {
 // Select Appointment Screen
   static const chooseTime = "Choose a time ";
   static const chooseDate = "Choose a date ";
+
+// Home Screen
+static const welcomeBack ="Welcome Back," ;
+static const chooseASpecialization = "Choose a Specialization";
+static const seeAll = "See All";
+static const failedToLoadDoctors = 'Failed to load doctors' ;
+static const empty = "empty";
+
+//Button navigation bar
+static const homeLabel= 'Home' ;
+static const profileLabel= 'Profile' ;
+static const favoriteLabel= 'Favorite' ;
+static const settingLabel= 'Setting' ;
 }

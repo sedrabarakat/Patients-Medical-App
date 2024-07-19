@@ -9,7 +9,7 @@ class FontManager {
 
 //**** Font Weghit Every Font ****//
 
-class FontWegihtManager {
+class FontWeightManager {
   static const extraBold = FontWeight.w800;
   static const bold = FontWeight.w700;
   static const semiBold = FontWeight.w600;
