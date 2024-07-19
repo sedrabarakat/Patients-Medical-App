@@ -12,13 +12,16 @@ Widget buildPopularDoctors(List<Doctor> doctors) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Popular Doctors",
-            style: StyleManager.fontBold16Black,),
+          Text(
+            "Popular Doctors",
+            style: StyleManager.fontBold16Black,
+          ),
           TextButton(
-              onPressed: () {},
-              child: const Text(
-                AppString.seeAll,
-              )),
+            onPressed: () {},
+            child: const Text(
+              AppString.seeAll,
+            ),
+          ),
         ],
       ),
       ...doctors.map((doctor) => DoctorCard(doctor: doctor)),

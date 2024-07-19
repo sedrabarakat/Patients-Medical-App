@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
-import 'package:patient_app/core/languages/app_localizations_ar.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
-import 'package:patient_app/core/utils/string_manager.dart';
 import 'package:patient_app/core/utils/assets_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/validator_manager.dart';

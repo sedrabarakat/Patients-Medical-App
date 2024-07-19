@@ -11,12 +11,13 @@ class SectionCategory extends StatelessWidget {
 
   final void Function()? onTap;
 
-  const SectionCategory(
-      {super.key,
-      required this.imageUrl,
-      required this.title,
-      required this.isSelected,
-      required this.onTap});
+  const SectionCategory({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,12 @@ class SectionCategory extends StatelessWidget {
                 fit: BoxFit.cover,
               )),
         ),
-        Text(
-          title,
-          style: isSelected? StyleManager.fontRegular16primary:StyleManager.fontRegular14grey
-          // style: StyleManager.fontRegular14Black,
-        ),
+        Text(title,
+            style: isSelected
+                ? StyleManager.fontRegular16primary
+                : StyleManager.fontRegular14grey
+            // style: StyleManager.fontRegular14Black,
+            ),
       ],
     );
   }

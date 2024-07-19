@@ -7,7 +7,6 @@ import '../../../../../core/utils/padding_manager.dart';
 import '../../../../../core/utils/string_manager.dart';
 import '../../domain/repositories/doctor_repository.dart';
 import '../cubit/home_cubit.dart';
-import '../cubit/category_cubit.dart';
 import '../widgets/build_popular_doctor.dart';
 import '../widgets/build_section_categories.dart';
 import '../widgets/header.dart';
@@ -21,9 +20,6 @@ class HomeContent extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => HomeCubit(DoctorRepository())..fetchDoctor(),
-        ),
-        BlocProvider(
-          create: (context) => CategoryCubit(),
         ),
       ],
       child: BlocBuilder<HomeCubit, HomeState>(
@@ -48,8 +44,8 @@ class HomeContent extends StatelessWidget {
                     AutoScrollPageView(doctors: state.doctors),
                   ],
                 ),
-                 Gap(DimensionsHelper.heightPercentage(context, 2)),
-                buildSectionCategories(context),
+                Gap(DimensionsHelper.heightPercentage(context, 2)),
+                const SectionCategories(),
                 buildPopularDoctors(state.doctors),
               ],
             );
@@ -61,7 +57,4 @@ class HomeContent extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

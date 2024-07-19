@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:patient_app/src/features/appointments/presentation/pages/select_appointment.dart';
 import 'package:patient_app/src/features/auth/presentation/pages/login_page.dart';
 import 'package:patient_app/src/features/splash/splash_screen.dart';
+import 'package:patient_app/src/features/video_call/presentation/screens/video_call_screen.dart';
 import '../../src/features/auth/presentation/pages/sign_up_page.dart';
 import '../../src/features/auth/presentation/pages/verify_code_page.dart';
 import '../../src/features/home/presentation/pages/home_screen_bottom_nav_bar.dart';
@@ -13,6 +14,7 @@ enum AppRoute {
   register,
   home,
   selectAppointment,
+  videoCall,
 }
 
 final Map<AppRoute, dynamic> routes = {
@@ -22,6 +24,7 @@ final Map<AppRoute, dynamic> routes = {
   AppRoute.register: (context, state) => const SignUpPage(),
   AppRoute.selectAppointment: (context, state) =>
       const SelectAppointmentScreen(),
+  AppRoute.videoCall: (context, state) => const VideoCallScreen(),
 };
 
 final goRouter = GoRouter(
@@ -30,7 +33,7 @@ final goRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) =>const HomeScreenBottomNavBar(),
+      builder: (context, state) => const HomeScreenBottomNavBar(),
       routes: routes.entries
           .map((entry) => GoRoute(
               path: entry.key.name,

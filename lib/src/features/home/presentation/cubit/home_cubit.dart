@@ -7,9 +7,8 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final DoctorRepository doctorRepository;
-
+  int selectedSection = 0;
   HomeCubit(this.doctorRepository) : super(HomeInitial());
-
   void fetchDoctor() async {
     try {
       emit(LoadingHome());
