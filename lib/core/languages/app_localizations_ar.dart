@@ -72,4 +72,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'لديك حساب؟';
+
+  @override
+  String get chooseDate => 'أختر تاريخ';
+
+  @override
+  String get chooseTime => 'أختر وقت';
+
+  @override
+  String get welcomeBack => 'مرحباً مجدداَ';
+
+  @override
+  String get book => 'حجز';
+
+  @override
+  String get chooseSpecialization => 'أختر تخصص';
+
+  @override
+  String get seeAll => 'الكل';
+
+  @override
+  String get cardiology => 'قلبية';
+
+  @override
+  String get home => 'الرئيسة';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get favorite => 'المفضلة';
+
+  @override
+  String get settings => 'الأعدادات';
 }

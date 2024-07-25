@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/src/features/home/presentation/cubit/home_cubit.dart';
 import 'package:patient_app/src/features/home/presentation/widgets/section_category.dart';
 
@@ -24,13 +25,13 @@ class _SectionCategoriesState extends State<SectionCategories> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              AppString.chooseASpecialization,
+              AppLocalizations.of(context)!.chooseSpecialization,
               style: StyleManager.fontBold16Black,
             ),
             TextButton(
               onPressed: () {},
-              child: const Text(
-                AppString.seeAll,
+              child: Text(
+                AppLocalizations.of(context)!.seeAll,
               ),
             ),
           ],
@@ -40,7 +41,7 @@ class _SectionCategoriesState extends State<SectionCategories> {
           child: ListView.separated(
             itemBuilder: (context, index) => SectionCategory(
               imageUrl: 'assets/images/heart.png',
-              title: "Cardiology",
+              title: AppLocalizations.of(context)!.cardiology,
               isSelected: index == selectedCategoryIndex,
               onTap: () {
                 setState(

@@ -21,5 +21,16 @@
   "single": "Single",
   "iHaveDiabetes": "I have Diabetes",
   "iHaveBloodPressure": "I have Blood-Pressure",
-  "alreadyHaveAccount": "?Already have account"
+  "alreadyHaveAccount": "?Already have account",
+  "chooseDate": "Choose a date",
+  "chooseTime": "Choose a time",
+  "welcomeBack": "Welcome Back",
+  "book": "Book",
+  "chooseSpecialization": "Choose a Specialization",
+  "seeAll": "See All",
+  "cardiology": "Cardiology",
+  "home": "Home",
+  "profile": "Profile",
+  "favorite": "Favorite",
+  "settings": "Settings"
 }

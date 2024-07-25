@@ -21,5 +21,16 @@
   "single": "اعزب",
   "iHaveDiabetes": "لدي السكري",
   "iHaveBloodPressure": "لدي ضغط دم",
-  "alreadyHaveAccount": "لديك حساب؟"
+  "alreadyHaveAccount": "لديك حساب؟",
+  "chooseDate": "أختر تاريخ",
+  "chooseTime": "أختر وقت",
+  "book": "حجز",
+  "welcomeBack": "مرحباً مجدداَ",
+  "chooseSpecialization": "أختر تخصص",
+  "seeAll": "الكل",
+  "cardiology": "قلبية",
+  "home": "الرئيسة",
+  "profile": "الملف الشخصي",
+  "favorite": "المفضلة",
+  "settings": "الأعدادات"
 }

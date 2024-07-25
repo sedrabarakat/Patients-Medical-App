@@ -18,7 +18,7 @@ class FeaturedDoctor extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding:AppPadding.only(left: 20,top: 20) ,
+            padding: AppPadding.only(left: 20, top: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -28,7 +28,7 @@ class FeaturedDoctor extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment.bottomRight ,
+            alignment: Alignment.bottomRight,
             child: Image.asset(
               //this image will become from doctor model, this now just for testing
               'assets/images/doctor.png',

@@ -11,7 +11,7 @@ class PatientApp extends StatelessWidget {
     return MaterialApp.router(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale('en'),
+      locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       theme: ThemeManager.myTheme,
       routerConfig: goRouter,

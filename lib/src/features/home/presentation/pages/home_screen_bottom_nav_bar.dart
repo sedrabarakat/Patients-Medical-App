@@ -4,14 +4,13 @@ import 'package:patient_app/src/features/favoriate/presentation/pages/favorite_p
 import 'package:patient_app/src/features/home/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
 import '../../../patient_profile/presentation/pages/patient_profile_page.dart';
-import '../widgets/bottom_van_bar.dart';
+import '../widgets/bottom_nav_bar.dart';
 import 'home_screen_content.dart';
-
 
 class HomeScreenBottomNavBar extends StatelessWidget {
   const HomeScreenBottomNavBar({super.key});
 
-  final List<Widget> _pages =const[
+  final List<Widget> _pages = const [
     HomeContent(),
     PatientProfilePage(),
     FavoritePage(),
@@ -25,10 +24,8 @@ class HomeScreenBottomNavBar extends StatelessWidget {
         body: BlocBuilder<BottomNavCubit, int>(
           builder: (context, currentIndex) => _pages[currentIndex],
         ),
-        bottomNavigationBar: const  BottomNavBar(),
+        bottomNavigationBar: const BottomNavBar(),
       ),
     );
   }
 }
-
-

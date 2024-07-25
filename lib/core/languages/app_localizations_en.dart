@@ -72,4 +72,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => '?Already have account';
+
+  @override
+  String get chooseDate => 'Choose a date';
+
+  @override
+  String get chooseTime => 'Choose a time';
+
+  @override
+  String get welcomeBack => 'Welcome Back';
+
+  @override
+  String get book => 'Book';
+
+  @override
+  String get chooseSpecialization => 'Choose a Specialization';
+
+  @override
+  String get seeAll => 'See All';
+
+  @override
+  String get cardiology => 'Cardiology';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get favorite => 'Favorite';
+
+  @override
+  String get settings => 'Settings';
 }

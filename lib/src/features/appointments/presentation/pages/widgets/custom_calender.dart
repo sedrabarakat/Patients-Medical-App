@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/utils/color_manager.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
@@ -23,6 +24,7 @@ class _MyCalenderState extends State<CustomCalender> {
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
+      locale: AppLocalizations.of(context)!.localeName,
       weekendDays: const [DateTime.saturday, DateTime.friday],
       currentDay: selectedDay,
       daysOfWeekHeight: 52,

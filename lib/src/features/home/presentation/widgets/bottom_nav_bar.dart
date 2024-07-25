@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/utils/font_manager.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
-import 'package:patient_app/core/utils/string_manager.dart';
 
 import '../../../../../core/helper/dimension_manager.dart';
 import '../../../../../core/utils/color_manager.dart';
@@ -15,22 +15,22 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<BottomNavigationBarItem> items = const [
+    List<BottomNavigationBarItem> items = [
       BottomNavigationBarItem(
         icon: IconManager.homeIcon,
-        label: AppString.homeLabel,
+        label: AppLocalizations.of(context)!.home,
       ),
       BottomNavigationBarItem(
         icon: IconManager.profileIcon,
-        label: AppString.profileLabel,
+        label: AppLocalizations.of(context)!.profile,
       ),
       BottomNavigationBarItem(
         icon: IconManager.favoriteIcon,
-        label: AppString.favoriteLabel,
+        label: AppLocalizations.of(context)!.favorite,
       ),
       BottomNavigationBarItem(
         icon: IconManager.settingIcon,
-        label: AppString.settingLabel,
+        label: AppLocalizations.of(context)!.settings,
       ),
     ];
 
@@ -58,8 +58,12 @@ class BottomNavBar extends StatelessWidget {
               //Todo: need to edit to make all size responsive with all screen
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 300),
-                left: itemWidth * state + (itemWidth / 10) + 5,
-                // - DimensionsHelper.widthPercentage(context, 10),
+                left: AppLocalizations.of(context)!.localeName == 'en'
+                    ? itemWidth * state + (itemWidth / 10) + 5
+                    : null,
+                right: AppLocalizations.of(context)!.localeName == 'ar'
+                    ? itemWidth * state + (itemWidth / 10) + 5
+                    : null,
                 bottom: 60,
                 width: 90,
                 child: CustomLampShadow(

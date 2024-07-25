@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/utils/assets_manager.dart';
 import 'package:patient_app/core/utils/color_manager.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
-import 'package:patient_app/core/utils/string_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/values_manager.dart';
 import 'package:patient_app/core/widgets/custom_button.dart';
@@ -18,7 +19,9 @@ class SelectAppointmentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
           icon: IconManager.arrowBackIcon,
           color: ColorsManager.black,
         ),
@@ -32,7 +35,7 @@ class SelectAppointmentScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    AppString.chooseDate,
+                    AppLocalizations.of(context)!.chooseDate,
                     style: StyleManager.fontExtraBold26Black,
                   ),
                   SvgPicture.asset(
@@ -51,7 +54,7 @@ class SelectAppointmentScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    AppString.chooseTime,
+                    AppLocalizations.of(context)!.chooseTime,
                     style: StyleManager.fontExtraBold26Black,
                   ),
                   SvgPicture.asset(
@@ -73,7 +76,7 @@ class SelectAppointmentScreen extends StatelessWidget {
                 height: AppSize.s20,
               ),
               CustomButton(
-                label: 'Book',
+                label: AppLocalizations.of(context)!.book,
                 onPressed: () {},
               ),
             ],

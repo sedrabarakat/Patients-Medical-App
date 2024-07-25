@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/utils/color_manager.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 
 import '../../../../../core/helper/dimension_manager.dart';
-import '../../../../../core/utils/string_manager.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -19,8 +19,10 @@ class Header extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(AppString.welcomeBack,
-                style: StyleManager.fontRegular16Black),
+            Text(
+              AppLocalizations.of(context)!.welcomeBack,
+              style: StyleManager.fontRegular16Black,
+            ),
             Text("Ms.tuna", style: StyleManager.fontExtraBold20Black),
           ],
         ),
@@ -37,7 +39,10 @@ class Header extends StatelessWidget {
             _circularIconWithRadius(
               IconButton(
                 icon: IconManager.notificationIcon,
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context)
+                      .pushNamed(AppRoute.selectAppointment.name);
+                },
               ),
             ),
           ],
