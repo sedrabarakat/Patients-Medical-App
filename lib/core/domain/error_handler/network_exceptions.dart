@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -6,17 +7,13 @@ import 'package:flutter/foundation.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../data/models/error_model.dart';
+
 part 'network_exceptions.freezed.dart';
 
 @freezed
 abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
   const factory NetworkExceptions.requestCancelled() = RequestCancelled;
-
-  // const factory NetworkExceptions.firebaseAuthException(String message) =
-  //     FireBaseAuthException;
-  // const factory NetworkExceptions.firebaseException(String message) =
-  //     FireBaseException;
-
   const factory NetworkExceptions.unauthorizedRequest(String reason) =
       UnauthorizedRequest;
   const factory NetworkExceptions.loggingInRequired() = LoggingInRequired;
@@ -78,16 +75,18 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
   }
 
   static NetworkExceptions handleResponse(Response? response) {
+    ErrorModel error = ErrorModel.fromJson(jsonDecode(response?.data));
+
     int statusCode = response?.statusCode ?? 0;
-    // Todo get the correct message for each one
+
     switch (statusCode) {
       case 400:
       case 401:
-        return const NetworkExceptions.unauthorizedRequest("");
+        return NetworkExceptions.unauthorizedRequest(error.message);
       case 403:
         return const NetworkExceptions.loggingInRequired();
       case 404:
-        return const NetworkExceptions.notFound("");
+        return NetworkExceptions.notFound(error.message);
       case 405:
         return const NetworkExceptions.methodNotAllowed();
       case 409:
@@ -145,12 +144,6 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
           }
         } else if (error is SocketException) {
           networkExceptions = const NetworkExceptions.noInternetConnection();
-          // } else if (error is FirebaseAuthException) {
-          //   networkExceptions =
-          //       NetworkExceptions.firebaseAuthException(error.message!);
-          // } else if (error is FirebaseException) {
-          //   networkExceptions =
-          //       NetworkExceptions.firebaseException(error.message!);
         } else {
           networkExceptions = const NetworkExceptions.unexpectedError();
         }
@@ -230,104 +223,8 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
           notAcceptable: () {
             errorMessage = "Not acceptable";
           },
-          // firebaseAuthException: (String message) {
-          //   errorMessage = message;
-          // },
-          // firebaseException: (String message) {
-          //   errorMessage = message;
-          // },
         ) ??
         '';
     return errorMessage;
   }
-  //
-  // static String getErrorMessageTr(NetworkExceptions networkExceptions) {
-  //   var errorMessage = "";
-  //
-  //   networkExceptions.when(
-  //     notImplemented: () {
-  //       errorMessage = tr(LocaleKeys.network_exceptions_not_implemented);
-  //     },
-  //     requestCancelled: () {
-  //       errorMessage = tr(LocaleKeys.network_exceptions_request_cancelled);
-  //     },
-  //     loggingInRequired: () {
-  //       errorMessage = tr(LocaleKeys.network_exceptions_logging_in_required);
-  //     },
-  //     internalServerError: () {
-  //       errorMessage = tr(LocaleKeys.network_exceptions_internal_server_error);
-  //     },
-  //     notFound: (String reason) {
-  //       errorMessage = reason;
-  //       if (reason.toLowerCase().contains("not found"))
-  //         errorMessage = tr(LocaleKeys.network_exceptions_not_found);
-  //     },
-  //     serviceUnavailable: () {
-  //       errorMessage = errorMessage =
-  //           tr(LocaleKeys.network_exceptions_service_unavailable);
-  //     },
-  //     methodNotAllowed: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_method_not_allowed);
-  //     },
-  //     badRequest: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_bad_request);
-  //     },
-  //     unauthorizedRequest: (String error) {
-  //       errorMessage = error;
-  //       if (error.toLowerCase().contains("unauthorized request"))
-  //         errorMessage = tr(LocaleKeys.network_exceptions_unauthorized_request);
-  //     },
-  //     unprocessableEntity: (String error) {
-  //       errorMessage = error;
-  //       if (error.toLowerCase().contains("unprocessable entity"))
-  //         errorMessage = tr(LocaleKeys.network_exceptions_unprocessable_entity);
-  //     },
-  //     unexpectedError: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_unexpected_error);
-  //     },
-  //     requestTimeout: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_request_timeout);
-  //     },
-  //     noInternetConnection: () {
-  //       errorMessage  =
-  //           tr(LocaleKeys.network_exceptions_no_internet_connection);
-  //     },
-  //     conflict: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_conflict);
-  //     },
-  //     sendTimeout: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_send_timeout);
-  //     },
-  //     unableToProcess: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_unable_to_process);
-  //     },
-  //     defaultError: (String error) {
-  //       errorMessage = error;
-  //       if (error.toLowerCase().contains("default error"))
-  //         errorMessage = tr(LocaleKeys.network_exceptions_default_error);
-  //     },
-  //     formatException: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_format_exception);
-  //     },
-  //     notAcceptable: () {
-  //       errorMessage =
-  //           errorMessage = tr(LocaleKeys.network_exceptions_not_acceptable);
-  //     },
-  //     // firebaseAuthException: (String message) {
-  //     //   errorMessage = message;
-  //     // },
-  //     // firebaseException: (String message) {
-  //     //   errorMessage = message;
-  //     // },
-  //   );
-  //   return errorMessage;
-  // }
 }

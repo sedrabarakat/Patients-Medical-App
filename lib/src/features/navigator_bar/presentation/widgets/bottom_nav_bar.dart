@@ -5,7 +5,7 @@ import 'package:patient_app/core/utils/font_manager.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
 
 import '../../../../../core/helper/dimension_manager.dart';
-import '../../../../../core/utils/color_manager.dart';
+import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/utils/style_manager.dart';
 import '../cubit/bottom_nav_cubit.dart';
 import 'custom_lamp_shadow.dart';
@@ -47,8 +47,8 @@ class BottomNavBar extends StatelessWidget {
                 currentIndex: state,
                 onTap: (index) =>
                     context.read<BottomNavCubit>().updateIndex(index),
-                selectedItemColor: ColorsManager.primary,
-                unselectedItemColor: ColorsManager.grey,
+                selectedItemColor: ColorsHelper.primary,
+                unselectedItemColor: ColorsHelper.grey,
                 unselectedFontSize: FontSize.s14,
                 selectedLabelStyle: StyleManager.fontRegular16primary,
                 unselectedLabelStyle: StyleManager.fontRegular14grey,
@@ -69,7 +69,7 @@ class BottomNavBar extends StatelessWidget {
                 child: CustomLampShadow(
                   width: DimensionsHelper.widthPercentage(context, 10),
                   height: 20,
-                  color: ColorsManager.primary,
+                  color: ColorsHelper.primary,
                 ),
               ),
             ],

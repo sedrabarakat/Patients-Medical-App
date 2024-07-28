@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
 
 import '../../../../../core/routing/app_router.dart';
@@ -68,11 +68,11 @@ class AuthCubit extends Cubit<AuthState> {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: const ColorScheme.light(
-                primary: ColorsManager.primary,
-                onPrimary: ColorsManager.white,
-                surface: ColorsManager.white,
-                onSurface: ColorsManager.black),
-            dialogBackgroundColor: ColorsManager.white,
+                primary: ColorsHelper.primary,
+                onPrimary: ColorsHelper.white,
+                surface: ColorsHelper.white,
+                onSurface: ColorsHelper.black),
+            dialogBackgroundColor: ColorsHelper.white,
           ),
           child: child!,
         );

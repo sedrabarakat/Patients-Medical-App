@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 
@@ -57,7 +57,7 @@ class Header extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-            border: Border.all(width: AppSize.s1_5, color: ColorsManager.grey),
+            border: Border.all(width: AppSize.s1_5, color: ColorsHelper.grey),
             borderRadius: BorderRadius.circular(30)),
         child: iconButton,
       );

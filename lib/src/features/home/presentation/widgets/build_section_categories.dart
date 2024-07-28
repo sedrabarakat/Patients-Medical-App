@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/src/features/home/presentation/cubit/home_cubit.dart';
 import 'package:patient_app/src/features/home/presentation/widgets/section_category.dart';
-
 import '../../../../../core/helper/dimension_manager.dart';
-import '../../../../../core/utils/string_manager.dart';
 import '../../../../../core/utils/style_manager.dart';
 
 class SectionCategories extends StatefulWidget {

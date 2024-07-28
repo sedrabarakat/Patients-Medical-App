@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 
 class CustomButton extends StatelessWidget {
@@ -7,7 +7,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onPressed,
-    this.color = ColorsManager.primary,
+    this.color = ColorsHelper.primary,
   });
   final String label;
   final void Function()? onPressed;

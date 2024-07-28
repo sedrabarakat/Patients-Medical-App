@@ -1,41 +1,41 @@
 /* Here goes the text styles */
 
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 
 abstract class StyleManager {
   /*>>>>>>>>>> Extra Bold <<<<<<<<<<*/
   static TextStyle fontExtraBold26Black = const TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 26,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   static TextStyle fontExtraBold14Black = const TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 14,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   static TextStyle fontExtraBold28Primary = const TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 28,
-    color: ColorsManager.primary,
+    color: ColorsHelper.primary,
   );
   static TextStyle fontExtraBold14White = const TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 14,
-    color: ColorsManager.white,
+    color: ColorsHelper.white,
   );
 
   static TextStyle fontExtraBold20Black = const TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 20,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
 
   /*>>>>>>>>>> Bold <<<<<<<<<<*/
   static const TextStyle fontBold40White = TextStyle(
     fontFamily: 'Poppins-bold',
-    color: ColorsManager.white,
+    color: ColorsHelper.white,
     fontSize: 28.0,
     fontWeight: FontWeight.w700,
   );
@@ -43,57 +43,77 @@ abstract class StyleManager {
     fontSize: 24,
     fontWeight: FontWeight.w700,
     fontFamily: 'Poppins-bold',
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   static TextStyle fontBold16Black = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   /*>>>>>>>>>> Medium <<<<<<<<<<*/
   static TextStyle fontMedium16White = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: ColorsManager.white,
+    color: ColorsHelper.white,
   );
 
   /*>>>>>>>>>> Regular <<<<<<<<<<*/
   static const TextStyle fontRegular20White = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.white,
+    color: ColorsHelper.white,
   );
   static const TextStyle fontRegular16primary = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.primary,
+    color: ColorsHelper.primary,
   );
   static const TextStyle fontRegular16Black = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
 
   static const TextStyle fontRegular14grey = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.lighGrey,
+    color: ColorsHelper.lighGrey,
   );
 
   static const TextStyle fontRegular14Black = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
 
   static const TextStyle fontRegular12Black = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   static const TextStyle fontRegular14Primary = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: ColorsManager.primary,
+    color: ColorsHelper.primary,
   );
+
+
+
+  ///Container Decoration
+  static const BoxDecoration Background_Call= BoxDecoration(
+   gradient: LinearGradient(
+     begin: Alignment.topRight,
+     end: Alignment.bottomLeft,
+     colors: [
+       ColorsHelper.lightBlue,
+       ColorsHelper.greenishBlue,
+       ColorsHelper.Skyblue,
+       ColorsHelper.blue,
+       ColorsHelper.blueLight,
+       ColorsHelper.blueMov,
+       ColorsHelper.blueDark,
+       ColorsHelper.blueDarkest,
+     ],
+   ),
+ );
 }

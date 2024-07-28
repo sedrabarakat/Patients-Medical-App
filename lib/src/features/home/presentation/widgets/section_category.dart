@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 
 import '../../../../../core/helper/dimension_manager.dart';
 import '../../../../../core/utils/style_manager.dart';
@@ -27,7 +27,7 @@ class SectionCategory extends StatelessWidget {
         CircleAvatar(
           radius: DimensionsHelper.heightPercentage(context, 4),
           backgroundColor:
-              isSelected ? ColorsManager.primary : ColorsManager.white,
+              isSelected ? ColorsHelper.primary : ColorsHelper.white,
           child: IconButton(
               onPressed: onTap,
               icon: Image.asset(

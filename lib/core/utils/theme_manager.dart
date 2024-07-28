@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 
 /* The Application Theme */
 class ThemeManager {
@@ -8,15 +8,15 @@ class ThemeManager {
     applyElevationOverlayColor: false,
     fontFamily: 'Poppins',
     useMaterial3: true,
-    scaffoldBackgroundColor: ColorsManager.white,
+    scaffoldBackgroundColor: ColorsHelper.white,
     appBarTheme: const AppBarTheme(
-      backgroundColor: ColorsManager.white,
+      backgroundColor: ColorsHelper.white,
       scrolledUnderElevation: 0,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: ColorsManager.transparent,
+        statusBarColor: ColorsHelper.transparent,
         statusBarIconBrightness: Brightness.dark,
       ),
     ),
-    primaryColor: ColorsManager.primary,
+    primaryColor: ColorsHelper.primary,
   );
 }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 
 class IconManager {
   static const arrowBackIcon = Icon(
     Icons.arrow_back_ios_new,
     size: 16,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   static const arrowForwardIcon = Icon(
     Icons.arrow_forward_ios,
     size: 16,
-    color: ColorsManager.black,
+    color: ColorsHelper.black,
   );
   static const homeIcon =  Icon(Icons.home_outlined);
   static const profileIcon = Icon(Icons.person_2_outlined);

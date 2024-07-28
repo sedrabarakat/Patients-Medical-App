@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../../core/utils/assets_manager.dart';
-import '../../../../../core/utils/color_manager.dart';
+import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/helper/dimension_manager.dart';
 import '../cubit/auth_cubit.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
@@ -74,9 +74,9 @@ class VerificationScreen extends StatelessWidget {
                       fieldWidth: DimensionsHelper.widthPercentage(context, 10),
                       fieldHeight: DimensionsHelper.heightPercentage(context, 10),
                       numberOfFields: 6,
-                      borderColor: ColorsManager.primary,
-                      focusedBorderColor: ColorsManager.primary,
-                      enabledBorderColor: ColorsManager.grey,
+                      borderColor: ColorsHelper.primary,
+                      focusedBorderColor: ColorsHelper.primary,
+                      enabledBorderColor: ColorsHelper.grey,
                       borderRadius: BorderRadius.circular(AppSize.size15),
                       showFieldAsBox: true,
                       filled: true,

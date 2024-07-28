@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
 import 'package:patient_app/core/utils/assets_manager.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/values_manager.dart';
 
@@ -41,8 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              ColorsManager.primary,
-              ColorsManager.primaryDark,
+              ColorsHelper.primary,
+              ColorsHelper.primaryDark,
             ],
           ),
         ),

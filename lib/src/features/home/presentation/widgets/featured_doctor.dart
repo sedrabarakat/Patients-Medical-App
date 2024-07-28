@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 
 import '../../../../../core/utils/padding_manager.dart';
@@ -13,7 +13,7 @@ class FeaturedDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: ColorsManager.primary,
+      color: ColorsHelper.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

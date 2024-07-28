@@ -1,4 +1,4 @@
-import 'package:patient_app/core/services/api_services.dart';
+import '../../../../../../core/domain/services/api_service.dart';
 
 class AuthRemoteDataSource{
   final ApiServices _apiServices ;

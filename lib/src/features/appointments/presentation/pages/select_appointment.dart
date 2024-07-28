@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/utils/assets_manager.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/values_manager.dart';
@@ -23,7 +23,7 @@ class SelectAppointmentScreen extends StatelessWidget {
             GoRouter.of(context).pop();
           },
           icon: IconManager.arrowBackIcon,
-          color: ColorsManager.black,
+          color: ColorsHelper.black,
         ),
       ),
       body: SafeArea(

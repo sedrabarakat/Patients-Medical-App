@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -50,7 +50,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: ColorsManager.primary,
+      cursorColor: ColorsHelper.primary,
       focusNode: _focusNode,
       obscureText: widget.obscureText == null || widget.obscureText == false
           ? false
@@ -76,8 +76,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           child: Icon(
             widget.iconData,
             color: _focusNode.hasFocus
-                ? ColorsManager.primary
-                : ColorsManager.grey,
+                ? ColorsHelper.primary
+                : ColorsHelper.grey,
           ),
         ),
         border: OutlineInputBorder(
@@ -86,7 +86,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: const BorderSide(
-            color: ColorsManager.primary,
+            color: ColorsHelper.primary,
             width: 2,
           ),
         ),

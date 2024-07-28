@@ -4,7 +4,7 @@ import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
-import 'package:patient_app/core/utils/color_manager.dart';
+import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/validator_manager.dart';
 import '../../../../../core/utils/padding_manager.dart';
@@ -108,7 +108,7 @@ class SignUpPage extends StatelessWidget {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(
-                          color: ColorsManager.primary,
+                          color: ColorsHelper.primary,
                           width: 2,
                         ),
                       ),
@@ -152,7 +152,7 @@ class SignUpPage extends StatelessWidget {
                           onChanged: (bool? value) {
                             cubit.toggleDiabetes();
                           },
-                          activeColor: ColorsManager.primary,
+                          activeColor: ColorsHelper.primary,
                         );
                       }),
                       Text(
@@ -170,7 +170,7 @@ class SignUpPage extends StatelessWidget {
                           onChanged: (bool? value) {
                             cubit.toggleBloodPressure();
                           },
-                          activeColor: ColorsManager.primary,
+                          activeColor: ColorsHelper.primary,
                         );
                       }),
                       Text(
