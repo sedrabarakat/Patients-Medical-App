@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/utils/font_manager.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
-
 import '../../../../../core/helper/dimension_manager.dart';
 import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/utils/style_manager.dart';
