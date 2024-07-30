@@ -16,44 +16,44 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => HomeCubit(DoctorRepository())..fetchDoctor(),
-        ),
-      ],
-      child: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          if (state is LoadingHome) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is LoadedHome) {
-            return ListView(
-              padding: AppPadding.screenPaddingAll,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: DimensionsHelper.heightPercentage(context, 4),
-                          bottom:
-                              DimensionsHelper.heightPercentage(context, 2)),
-                      child: const Header(),
-                    ),
-                    AutoScrollPageView(doctors: state.doctors),
-                  ],
+    return Scaffold(
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => HomeCubit(DoctorRepository())..fetchDoctor(),
+          ),
+        ],
+        child: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            if (state is LoadingHome) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is LoadedHome) {
+              return Padding(
+                padding: AppPadding.screenPaddingAll,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: DimensionsHelper.heightPercentage(context, 4),
+                            bottom:
+                                DimensionsHelper.heightPercentage(context, 2)),
+                        child: const Header(),
+                      ),
+                      AutoScrollPageView(doctors: state.doctors),
+                      Gap(DimensionsHelper.heightPercentage(context, 2)),
+                      const SectionCategories(),
+                      buildPopularDoctors(state.doctors),
+                    ],
+                  ),
                 ),
-                Gap(DimensionsHelper.heightPercentage(context, 2)),
-                const SectionCategories(),
-                buildPopularDoctors(state.doctors),
-              ],
-            );
-          } else if (state is ErrorHome) {
-            return const Center(child: Text(AppString.failedToLoadDoctors));
-          }
-          return const Center(child: Text(AppString.empty));
-        },
+              );
+            } else if (state is ErrorHome) {
+              return const Center(child: Text(AppString.failedToLoadDoctors));
+            }
+            return const Center(child: Text(AppString.empty));
+          },
+        ),
       ),
     );
   }

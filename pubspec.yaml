@@ -71,6 +71,7 @@ dependencies:
   permission_handler: ^11.3.1
   agora_rtc_engine: ^6.3.2
   pusher_client_fixed: ^0.0.4+1
+  animated_notch_bottom_bar: ^1.0.3
 
 
 dev_dependencies:

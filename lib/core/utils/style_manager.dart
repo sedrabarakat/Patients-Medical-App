@@ -56,6 +56,11 @@ abstract class StyleManager {
     fontWeight: FontWeight.w500,
     color: ColorsHelper.white,
   );
+  static TextStyle fontMedium13 = const TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 13,
+    color: ColorsHelper.lighGrey,
+  );
 
   /*>>>>>>>>>> Regular <<<<<<<<<<*/
   static const TextStyle fontRegular20White = TextStyle(
@@ -97,23 +102,21 @@ abstract class StyleManager {
     color: ColorsHelper.primary,
   );
 
-
-
   ///Container Decoration
-  static const BoxDecoration Background_Call= BoxDecoration(
-   gradient: LinearGradient(
-     begin: Alignment.topRight,
-     end: Alignment.bottomLeft,
-     colors: [
-       ColorsHelper.lightBlue,
-       ColorsHelper.greenishBlue,
-       ColorsHelper.Skyblue,
-       ColorsHelper.blue,
-       ColorsHelper.blueLight,
-       ColorsHelper.blueMov,
-       ColorsHelper.blueDark,
-       ColorsHelper.blueDarkest,
-     ],
-   ),
- );
+  static const BoxDecoration Background_Call = BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+      colors: [
+        ColorsHelper.lightBlue,
+        ColorsHelper.greenishBlue,
+        ColorsHelper.Skyblue,
+        ColorsHelper.blue,
+        ColorsHelper.blueLight,
+        ColorsHelper.blueMov,
+        ColorsHelper.blueDark,
+        ColorsHelper.blueDarkest,
+      ],
+    ),
+  );
 }

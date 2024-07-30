@@ -1,7 +1,4 @@
-
 import 'package:dio/dio.dart';
-
-import '../interceptors/token_interceptor.dart';
 
 class DioHelper {
   static final DioHelper _instance = DioHelper._internal();

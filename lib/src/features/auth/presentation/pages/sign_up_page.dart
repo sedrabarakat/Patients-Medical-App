@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
@@ -25,7 +26,7 @@ class SignUpPage extends StatelessWidget {
         listener: (context, state) {
           if (state is SignUpFailureState) {
           } else if (state is SignUpSuccessState) {
-            goRouter.pushReplacementNamed(AppRoute.home.name);
+            context.pushReplacement(AppRouter.kBottomNavigationScreen);
           }
         },
         builder: (context, state) {
@@ -182,7 +183,7 @@ class SignUpPage extends StatelessWidget {
                   const Gap(20),
                   CustomButton(
                     onPressed: () {
-                      cubit.login();
+                      context.pushReplacement(AppRouter.kVerify);
                     },
                     label: AppLocalizations.of(context)!.signup,
                   ),
@@ -190,7 +191,7 @@ class SignUpPage extends StatelessWidget {
                     text: AppLocalizations.of(context)!.alreadyHaveAccount,
                     btnText: AppLocalizations.of(context)!.login,
                     onTap: () {
-                      goRouter.pushReplacementNamed(AppRoute.login.name);
+                      context.pushReplacement(AppRouter.kLogin);
                     },
                   ),
                 ],

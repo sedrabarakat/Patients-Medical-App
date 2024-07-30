@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        context.pushReplacementNamed(AppRoute.login.name);
+        context.pushReplacement(AppRouter.kLogin);
       },
     );
   }

@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/string_manager.dart';
 
-import '../../../../../core/routing/app_router.dart';
-
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -41,16 +39,6 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> close() {
     phoneController.dispose();
     return super.close();
-  }
-
-  void login() {
-    goRouter.pushReplacementNamed(AppRoute.verifyCode.name);
-  }
-
-  void verifySubmit(String code) {
-    otpCode = code;
-    goRouter.pop();
-    goRouter.pushReplacementNamed(AppRoute.home.name);
   }
 
   //sign up

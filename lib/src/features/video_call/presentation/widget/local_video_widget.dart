@@ -1,9 +1,9 @@
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:patient_app/core/utils/assets_manager.dart';
+
 import 'package:patient_app/src/features/video_call/presentation/cubits/agora/video_call_cubit.dart';
 
 Widget localVideo({required VideoCallCubit cubit}) {
@@ -26,16 +26,11 @@ Widget localVideo({required VideoCallCubit cubit}) {
                     EdgeInsets.symmetric(horizontal: 100.w, vertical: 80.h),
                 child: const CircularProgressIndicator(),
               )
-        :  Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-              width: 5.w
-            )
+        : Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 5.w)),
+            child: Lottie.asset("assets/animation/animated_person.json",
+                height: 250.h, fit: BoxFit.cover),
           ),
-          child: Lottie.asset("assets/animation/animated_person.json",
-          height: 250.h, fit: BoxFit.cover),
-        ),
-
   );
 }

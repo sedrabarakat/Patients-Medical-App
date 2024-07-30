@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
@@ -60,7 +61,7 @@ class LoginPage extends StatelessWidget {
                   const Gap(40),
                   CustomButton(
                     onPressed: () {
-                      cubit.login();
+                      context.pushReplacement(AppRouter.kVerify);
                     },
                     label: AppLocalizations.of(context)!.login,
                   ),
@@ -69,7 +70,7 @@ class LoginPage extends StatelessWidget {
                     text: AppLocalizations.of(context)!.dontHaveAccount,
                     btnText: AppLocalizations.of(context)!.signup,
                     onTap: () {
-                      goRouter.pushReplacementNamed(AppRoute.register.name);
+                      context.pushReplacement(AppRouter.kRegister);
                     },
                   ),
                 ],

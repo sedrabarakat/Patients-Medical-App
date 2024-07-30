@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:patient_app/src/features/video_call/data/models/event_model.dart';
 import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_cubit.dart';
 import 'package:pusher_client_fixed/pusher_client_fixed.dart';
-import '../../../../../core/domain/services/locator.dart';
 import '../../../../../core/domain/urls/app_url.dart';
 
 class PusherService {
@@ -14,7 +13,7 @@ class PusherService {
 
   PusherService();
 
-  static Future initPusher()async{
+  static Future initPusher() async {
     // Initialize Pusher
     PusherOptions options = const PusherOptions(
       cluster: 'ap2',
@@ -47,24 +46,22 @@ class PusherService {
     });
   }
 
-  Future<EventModel ?> connectToChannel({
-    int id = 1,
-    required PusherCubit pushercubit
-  }) async {
+  Future<EventModel?> connectToChannel(
+      {int id = 1, required PusherCubit pushercubit}) async {
     channel = pusher.subscribe('channel-user-$id');
 
-    EventModel ? eventModel;
+    EventModel? eventModel;
 
     channel.bind(Call_event, (PusherEvent? event) {
-        if (event != null && event.data != null) {
-          final data = jsonDecode(event.data!);
-          eventModel=EventModel.fromJson(data);
-          print("in pusher sevice = ${eventModel!.channel}");
-          print('Event data: $data');
-          pushercubit.recieveEvent(eventModel: eventModel!);
-        } else {
-          print('No data received in event');
-        }
+      if (event != null && event.data != null) {
+        final data = jsonDecode(event.data!);
+        eventModel = EventModel.fromJson(data);
+        print("in pusher sevice = ${eventModel!.channel}");
+        print('Event data: $data');
+        pushercubit.recieveEvent(eventModel: eventModel!);
+      } else {
+        print('No data received in event');
+      }
     });
     return eventModel;
   }

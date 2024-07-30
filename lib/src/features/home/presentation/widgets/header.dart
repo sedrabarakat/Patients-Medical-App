@@ -32,7 +32,7 @@ class Header extends StatelessWidget {
               IconButton(
                 icon: IconManager.searchIcon,
                 onPressed: () {
-                  GoRouter.of(context).pushNamed(AppRoute.videoCall.name);
+                  context.push(AppRouter.kVideoCall);
                 },
               ),
             ),
@@ -40,8 +40,7 @@ class Header extends StatelessWidget {
               IconButton(
                 icon: IconManager.notificationIcon,
                 onPressed: () {
-                  GoRouter.of(context)
-                      .pushNamed(AppRoute.selectAppointment.name);
+                  context.push(AppRouter.kSelectAppointment);
                 },
               ),
             ),

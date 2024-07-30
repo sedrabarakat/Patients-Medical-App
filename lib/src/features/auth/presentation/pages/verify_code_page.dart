@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:patient_app/core/routing/app_router.dart';
 import '../../../../../core/utils/assets_manager.dart';
 import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/helper/dimension_manager.dart';
@@ -29,6 +31,9 @@ class VerificationScreen extends StatelessWidget {
                 );
               },
             );
+            Future.delayed(const Duration(seconds: 2), () {
+              context.pushReplacement(AppRouter.kBottomNavigationScreen);
+            });
           } else if (state is VerifyCodeFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),
@@ -41,10 +46,10 @@ class VerificationScreen extends StatelessWidget {
             body: Form(
               key: cubit.formStateVerify,
               child: SingleChildScrollView(
-                padding:const EdgeInsets.symmetric(
-                    horizontal: AppSize.screenPadding,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSize.screenPadding,
                   vertical: AppSize.screenPadding,
-                ),// DimensionsHelper.screenPadding,
+                ), // DimensionsHelper.screenPadding,
                 scrollDirection: Axis.vertical,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,7 +77,8 @@ class VerificationScreen extends StatelessWidget {
                     const Gap(20),
                     OtpTextField(
                       fieldWidth: DimensionsHelper.widthPercentage(context, 10),
-                      fieldHeight: DimensionsHelper.heightPercentage(context, 10),
+                      fieldHeight:
+                          DimensionsHelper.heightPercentage(context, 10),
                       numberOfFields: 6,
                       borderColor: ColorsHelper.primary,
                       focusedBorderColor: ColorsHelper.primary,
