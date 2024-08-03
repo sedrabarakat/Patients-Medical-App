@@ -8,7 +8,7 @@ import '../widget/buttons_bar.dart';
 import '../widget/remote_video_widgets.dart';
 
 class VideoCall extends StatelessWidget {
-  const VideoCall({super.key});
+  const     VideoCall({super.key});
 
   @override
   Widget build(BuildContext context) {

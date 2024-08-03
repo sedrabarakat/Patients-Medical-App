@@ -7,6 +7,7 @@ import 'package:patient_app/src/features/favoriate/presentation/pages/favorite_p
 import 'package:patient_app/src/features/home/presentation/pages/home_screen_content.dart';
 import 'package:patient_app/src/features/patient_profile/presentation/pages/patient_profile_page.dart';
 import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
+import 'package:patient_app/src/features/video_call/presentation/screens/video_call.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
@@ -22,6 +23,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<Widget> bottomBarPages = [
     const HomeContent(),
     const FavoritePage(),
+    const VideoCall(),
     const PatientProfilePage(),
     const SettingPage(),
   ];
@@ -71,12 +73,20 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             itemLabel: 'Favorite',
           ),
           BottomBarItem(
+            inActiveItem: Icon(Icons.call),
+            activeItem: Icon(
+              Icons.call,
+              color: ColorsHelper.white,
+            ),
+            itemLabel: "Call",
+          ),
+          BottomBarItem(
             inActiveItem: Icon(Icons.person),
             activeItem: Icon(
               Icons.person,
               color: ColorsHelper.white,
             ),
-            itemLabel: 'Person',
+            itemLabel: 'Profile',
           ),
           BottomBarItem(
             inActiveItem: Icon(Icons.settings),

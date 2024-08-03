@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class PatientProfilePage extends StatelessWidget {
@@ -6,6 +5,12 @@ class PatientProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('My profile');
+    return const Scaffold(
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Center(child: Text("Profile Page")),
+      ),
+    );
   }
 }
