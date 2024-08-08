@@ -3,6 +3,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel {
+  @JsonKey(name: 'birth_date')
   final String birthDate;
   final String age;
   final String gender;
@@ -12,7 +13,7 @@ class UserModel {
   @JsonKey(name: 'marital_status')
   final String maritalStatus;
   final String? habits;
-  final String profession;
+  final String proffesion;
   final String diabetes;
   @JsonKey(name: 'blood_pressure')
   final String bloodPressure;
@@ -34,7 +35,7 @@ class UserModel {
     required this.id,
     required this.maritalStatus,
     required this.personalInformation,
-    required this.profession,
+    required this.proffesion,
     required this.userId,
     required this.wallet,
     this.habits,

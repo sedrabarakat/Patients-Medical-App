@@ -31,27 +31,22 @@ final class VerifyCodeErrorState extends AuthState {
 }
 
 //sign up
-final class SignUpSuccessState extends AuthState {}
+final class SignUpLoadingState extends AuthState {}
 
-final class SignUpFailureState extends AuthState {}
-
-final class ResetDateState extends AuthState {}
-
-final class DateSelectedState extends AuthState {
-  final DateTime selectedDate;
-  DateSelectedState(this.selectedDate);
+final class SignUpSuccessState extends AuthState {
+  final UserModel userData;
+  SignUpSuccessState({required this.userData});
 }
+
+final class SignUpFailureState extends AuthState {
+  final NetworkExceptions error;
+  SignUpFailureState({required this.error});
+}
+
 
 final class MaritalStatusSelectedState extends AuthState {}
 
-final class DiabetesToggledState extends AuthState {
-  final bool isChecked;
-  DiabetesToggledState(this.isChecked);
-}
-
-final class BloodPressureToggledState extends AuthState {
-  final bool isChecked;
-  BloodPressureToggledState(this.isChecked);
-}
 
 class FinishTimeState extends AuthState {}
+
+class PickImageState extends AuthState {}

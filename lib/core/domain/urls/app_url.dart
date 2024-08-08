@@ -9,4 +9,5 @@ class AppUrl {
   /*>>>>>>>>>>>>>>>>>>>> Auth <<<<<<<<<<<<<<<<<<<<*/
   static const requestCode = '$baseUrl${auth}request-code';
   static const verifyCode = '$baseUrl${auth}verify-code';
+  static const register = '${baseUrl}register/patient/';
 }

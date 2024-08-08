@@ -15,6 +15,27 @@ class ValidatorManager {
     return null;
   }
 
+  String? validateAddress(String value) {
+    if (value.isEmpty) {
+      return 'Please enter your address';
+    }
+    return null;
+  }
+
+  String? validateProffesion(String value) {
+    if (value.isEmpty) {
+      return "Enter proffession";
+    }
+    return null;
+  }
+
+  String? validateBirthDate(String value) {
+    if (value.isEmpty) {
+      return "Please enter your birthdate";
+    }
+    return null;
+  }
+
   String? validateEmail(String value) {
     if (value.isEmpty) {
       return 'Please enter your email';

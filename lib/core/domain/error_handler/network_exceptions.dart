@@ -76,7 +76,7 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
 
   static NetworkExceptions handleResponse(Response? response) {
     ErrorModel error = ErrorModel.fromJson(jsonDecode(response?.data));
-
+    Map<String, dynamic> responseJson = jsonDecode(response?.data);
     int statusCode = response?.statusCode ?? 0;
 
     switch (statusCode) {
@@ -94,7 +94,7 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
       case 408:
         return const NetworkExceptions.requestTimeout();
       case 422:
-        return const NetworkExceptions.unprocessableEntity("");
+        return NetworkExceptions.unprocessableEntity(responseJson['message']);
       case 500:
         return const NetworkExceptions.internalServerError();
       case 503:

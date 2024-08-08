@@ -9,7 +9,7 @@ part of 'user_model.dart';
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       address: json['address'] as String,
       age: json['age'] as String,
-      birthDate: json['birthDate'] as String,
+      birthDate: json['birth_date'] as String,
       bloodPressure: json['blood_pressure'] as String,
       bloodType: json['blood_type'] as String,
       diabetes: json['diabetes'] as String,
@@ -18,21 +18,21 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       maritalStatus: json['marital_status'] as String,
       personalInformation: PersonalInformationModel.fromJson(
           json['user'] as Map<String, dynamic>),
-      profession: json['profession'] as String,
+      proffesion: json['proffesion'] as String,
       userId: (json['user_id'] as num).toInt(),
       wallet: json['wallet'] as String,
       habits: json['habits'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-      'birthDate': instance.birthDate,
+      'birth_date': instance.birthDate,
       'age': instance.age,
       'gender': instance.gender,
       'address': instance.address,
       'blood_type': instance.bloodType,
       'marital_status': instance.maritalStatus,
       'habits': instance.habits,
-      'profession': instance.profession,
+      'proffesion': instance.proffesion,
       'diabetes': instance.diabetes,
       'blood_pressure': instance.bloodPressure,
       'wallet': instance.wallet,

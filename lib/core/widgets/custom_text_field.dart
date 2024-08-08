@@ -6,11 +6,14 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   final String labelText;
   final IconData iconData;
+  final bool readOnly;
   final TextEditingController myController;
+  final TextInputType keyboardType;
   final String? Function(String?) valid;
+  final int maxLine;
 
-  final bool isNumber;
   final bool? obscureText;
+  final void Function()? onTap;
   final void Function()? onTapIcon;
 
   const CustomTextField({
@@ -20,9 +23,12 @@ class CustomTextField extends StatefulWidget {
     required this.myController,
     required this.hintText,
     required this.valid,
-    required this.isNumber,
+    this.keyboardType = TextInputType.text,
+    this.readOnly = false,
+    this.maxLine = 1,
     this.obscureText,
     this.onTapIcon,
+    this.onTap,
   });
 
   @override
@@ -50,16 +56,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: widget.onTap,
       cursorColor: ColorsHelper.primary,
       focusNode: _focusNode,
       obscureText: widget.obscureText == null || widget.obscureText == false
           ? false
           : true,
-      keyboardType: widget.isNumber
-          ? const TextInputType.numberWithOptions(decimal: true)
-          : TextInputType.text,
+      keyboardType: widget.keyboardType,
+      readOnly: widget.readOnly,
       validator: widget.valid,
       controller: widget.myController,
+      minLines: 1,
+      maxLines: widget.maxLine,
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.width / 35),
@@ -69,15 +77,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
           horizontal: MediaQuery.of(context).size.width / 15,
         ),
         labelText: widget.labelText,
-        labelStyle: StyleManager.fontRegular14Black,
+        labelStyle: _focusNode.hasFocus
+            ? StyleManager.fontRegular14Black
+                .copyWith(color: ColorsHelper.primary)
+            : StyleManager.fontRegular14Black,
         floatingLabelStyle: StyleManager.fontRegular14Primary,
         suffixIcon: InkWell(
           onTap: widget.onTapIcon,
           child: Icon(
             widget.iconData,
-            color: _focusNode.hasFocus
-                ? ColorsHelper.primary
-                : ColorsHelper.grey,
+            color:
+                _focusNode.hasFocus ? ColorsHelper.primary : ColorsHelper.grey,
           ),
         ),
         border: OutlineInputBorder(
