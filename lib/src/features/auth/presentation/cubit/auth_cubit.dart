@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_app/core/data/models/user_model.dart';
+import 'package:patient_app/core/domain/error_handler/network_exceptions.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
-import 'package:patient_app/core/utils/string_manager.dart';
+
+import 'package:patient_app/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:progress_state_button/progress_button.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
-
+  final AuthRepository _repo;
+  AuthCubit(this._repo) : super(AuthInitial());
   static AuthCubit get(BuildContext context) => BlocProvider.of(context);
 
   final formState = GlobalKey<FormState>();
@@ -30,6 +34,9 @@ class AuthCubit extends Cubit<AuthState> {
   List<String> maritalStatus = ['None', 'Single', 'Married'];
   bool diabetes = false;
   bool bloodPressure = false;
+  bool isFinished = true;
+  int waitSeconds = 10;
+  ButtonState requestCodeButtonState = ButtonState.idle;
 
   //verification code
   final TextEditingController otpController = TextEditingController();
@@ -39,6 +46,39 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> close() {
     phoneController.dispose();
     return super.close();
+  }
+
+  Future<void> requestCode() async {
+    requestCodeButtonState = ButtonState.loading;
+    isFinished = false;
+    emit(RequestCodeLoadingState());
+
+    final response = await _repo.requestCode(phoneController.text);
+    response.fold((e) {
+      requestCodeButtonState = ButtonState.fail;
+      emit(
+        RequestCodeErrorState(error: e),
+      );
+    }, (data) {
+      requestCodeButtonState = ButtonState.idle;
+      emit(
+        RequestCodeSuccessState(message: data.message),
+      );
+    });
+  }
+
+  Future<void> verifyCode() async {
+    emit(VerifyCodeLoadingState());
+    final response = await _repo.verifyCode(phoneController.text, otpCode);
+    response.fold((e) {
+      emit(
+        VerifyCodeErrorState(error: e),
+      );
+    }, (data) {
+      emit(
+        VerifyCodeSuccessState(userData: data.data!),
+      );
+    });
   }
 
   //sign up
@@ -88,12 +128,9 @@ class AuthCubit extends Cubit<AuthState> {
     emit(BloodPressureToggledState(bloodPressure));
   }
 
-  //verification code fun
-  void verifyCode(String code) {
-    if (code == "123456") {
-      emit(VerifyCodeSuccessState());
-    } else {
-      emit(VerifyCodeFailureState(AppString.invalidVerifyCode));
-    }
+  void finishTime() {
+    isFinished = true;
+    waitSeconds *= 2;
+    emit(FinishTimeState());
   }
 }

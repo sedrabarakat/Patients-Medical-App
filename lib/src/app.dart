@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/utils/theme_manager.dart';
+import 'package:patient_app/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_states.dart';
 import '../core/domain/services/locator.dart';
 import 'features/navigator_bar/presentation/cubit/bottom_nav_cubit.dart';
@@ -22,7 +23,8 @@ class PatientApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 PusherCubit(getIt())..listen2Channel(context: context)),
-        BlocProvider(create: (context) => VideoCallCubit())
+        BlocProvider(create: (context) => VideoCallCubit()),
+        BlocProvider(create: (context) => AuthCubit(getIt())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(1600, 1000),

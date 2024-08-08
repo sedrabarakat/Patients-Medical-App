@@ -7,10 +7,12 @@ import 'package:patient_app/core/helper/dimension_manager.dart';
 import 'package:patient_app/core/utils/assets_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/validator_manager.dart';
+import 'package:patient_app/core/widgets/custom_progress_state_button.dart';
+import 'package:patient_app/core/widgets/toast_bar.dart';
 import '../../../../../core/utils/padding_manager.dart';
 import '../../../../../core/widgets/custom_row_text_button.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
-import '../../../../../core/widgets/custom_button.dart';
+
 import '../cubit/auth_cubit.dart';
 import 'package:gap/gap.dart';
 
@@ -19,65 +21,74 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          final cubit = AuthCubit.get(context);
-          return Scaffold(
-            backgroundColor: Colors.grey.shade100,
-            body: Form(
-              key: cubit.formState,
-              child: ListView(
-                padding: AppPadding.screenPadding,
-                children: [
-                  const Gap(40),
-                  Center(
-                    child: Image.asset(
-                      AssetsManager.login,
-                      height: DimensionsHelper.screenHeight(context) / 3,
-                    ),
-                  ),
-                  const Gap(10),
-                  Text(
-                    AppLocalizations.of(context)!.loginWelcome,
-                    style: StyleManager.fontBold24Black,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.loginSubWelcome,
-                    style: StyleManager.fontRegular14grey,
-                  ),
-                  const Gap(50),
-                  CustomTextField(
-                    valid: (value) => ValidatorManager().validatePhone(value!),
-                    labelText: AppLocalizations.of(context)!.phoneNumber,
-                    iconData: Icons.phone_android,
-                    myController: cubit.phoneController,
-                    hintText: AppLocalizations.of(context)!.phoneHint,
-                    isNumber: true,
-                  ),
-                  // SizedBox(height: MediaQuery.of(context).size.height/20,),
-                  const Gap(40),
-                  CustomButton(
-                    onPressed: () {
-                      context.pushReplacement(AppRouter.kVerify);
-                    },
-                    label: AppLocalizations.of(context)!.login,
-                  ),
-                  const Gap(15),
-                  CustomRowTextButton(
-                    text: AppLocalizations.of(context)!.dontHaveAccount,
-                    btnText: AppLocalizations.of(context)!.signup,
-                    onTap: () {
-                      context.pushReplacement(AppRouter.kRegister);
-                    },
-                  ),
-                ],
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is RequestCodeSuccessState) {
+          ToastBar.onSuccess(context, message: state.message, title: "Success");
+          context.go(AppRouter.kVerify);
+        } else if (state is RequestCodeErrorState) {
+          ToastBar.onNetworkFailure(context, networkException: state.error);
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade100,
+        body: Form(
+          key: BlocProvider.of<AuthCubit>(context).formState,
+          child: ListView(
+            padding: AppPadding.screenPadding,
+            children: [
+              const Gap(40),
+              Center(
+                child: Image.asset(
+                  AssetsManager.login,
+                  height: DimensionsHelper.screenHeight(context) / 3,
+                ),
               ),
-            ),
-          );
-        },
+              const Gap(10),
+              Text(
+                AppLocalizations.of(context)!.loginWelcome,
+                style: StyleManager.fontBold24Black,
+              ),
+              Text(
+                AppLocalizations.of(context)!.loginSubWelcome,
+                style: StyleManager.fontRegular14grey,
+              ),
+              const Gap(50),
+              CustomTextField(
+                valid: (value) => ValidatorManager().validatePhone(value!),
+                labelText: AppLocalizations.of(context)!.phoneNumber,
+                iconData: Icons.phone_android,
+                myController:
+                    BlocProvider.of<AuthCubit>(context).phoneController,
+                hintText: AppLocalizations.of(context)!.phoneHint,
+                isNumber: true,
+              ),
+              // SizedBox(height: MediaQuery.of(context).size.height/20,),
+              const Gap(40),
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  return CustomStateButton(
+                    onPressed: () async {
+                      await BlocProvider.of<AuthCubit>(context).requestCode();
+                    },
+                    currentState: BlocProvider.of<AuthCubit>(context)
+                        .requestCodeButtonState,
+                    label: AppLocalizations.of(context)!.login,
+                  );
+                },
+              ),
+
+              const Gap(15),
+              CustomRowTextButton(
+                text: AppLocalizations.of(context)!.dontHaveAccount,
+                btnText: AppLocalizations.of(context)!.signup,
+                onTap: () {
+                  context.pushReplacement(AppRouter.kRegister);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -11,7 +11,8 @@ BaseModel<T> _$BaseModelFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     BaseModel<T>(
-      data: _$nullableGenericFromJson(json['data'], fromJsonT),
+      data: _$nullableGenericFromJson(
+          BaseModel.readDataValue(json, 'data'), fromJsonT),
       meta: json['meta'] == null
           ? null
           : MetaList.fromJson(json['meta'] as Map<String, dynamic>),

@@ -6,6 +6,7 @@ part 'base_model.g.dart';
 @JsonSerializable(genericArgumentFactories: true, explicitToJson: true)
 class BaseModel<T> {
   BaseModel({required this.data, this.meta, this.links, this.message = ''});
+  @JsonKey(readValue: readDataValue)
   final T? data;
   final MetaList? meta;
   final LinksList? links;
@@ -17,6 +18,10 @@ class BaseModel<T> {
   Map<String, dynamic> toJson(Object Function(T value) toJsonT) {
     final Map<String, dynamic> json = _$BaseModelToJson(this, toJsonT);
     return json;
+  }
+
+  static readDataValue(map, value) {
+    return map['data'] ?? map['user'];
   }
 }
 

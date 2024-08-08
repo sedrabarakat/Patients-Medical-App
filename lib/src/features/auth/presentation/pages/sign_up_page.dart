@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/domain/services/locator.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/dimension_manager.dart';
@@ -21,7 +22,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(),
+      create: (context) => AuthCubit(getIt()),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is SignUpFailureState) {
