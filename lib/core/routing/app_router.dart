@@ -8,6 +8,7 @@ import '../../src/features/auth/presentation/pages/verify_code_page.dart';
 import '../../src/features/video_call/presentation/screens/calles_list.dart';
 import '../../src/features/video_call/presentation/screens/ring_screen.dart';
 import '../../src/features/video_call/presentation/screens/video_call.dart';
+import '../helper/token_helper.dart';
 
 class AppRouter {
   static const kLogin = '/login';
@@ -19,10 +20,13 @@ class AppRouter {
   static const kRingScreen = '/ring_screen';
   static const kVideoCall = '/video_call';
   static final router = GoRouter(
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) => (TokenHelper.hasToken)
+            ?SplashScreen(pushRoute: kBottomNavigationScreen)
+            :SplashScreen(pushRoute:kLogin),
       ),
       GoRoute(
         path: kLogin,

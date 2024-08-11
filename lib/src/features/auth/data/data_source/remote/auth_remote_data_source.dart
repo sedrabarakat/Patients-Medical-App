@@ -1,12 +1,10 @@
 import 'dart:typed_data';
-
 import 'package:dio/dio.dart';
 import 'package:patient_app/core/data/models/base_model.dart';
 import 'package:patient_app/core/data/models/user_model.dart';
 import 'package:patient_app/core/domain/urls/app_url.dart';
 import 'package:patient_app/core/helper/dio_helper.dart';
-import 'package:patient_app/core/interceptors/token_interceptor.dart';
-
+import '../../../../../../core/data/data_source/local.dart';
 import '../../../../../../core/domain/services/api_service.dart';
 
 class AuthRemoteDataSource {
@@ -29,7 +27,8 @@ class AuthRemoteDataSource {
       'phone_number': phoneNumber,
       'code': code,
     });
-    DioHelper().dio.interceptors.add(TokenInterceptor(response['token']));
+    await HiveService.Auth_Box!.put('Token',response['token']);
+    DioHelper().addTokenInterceptor();
     return BaseModel.fromJson(
         response, (json) => PersonalInformationModel.fromJson(json));
   }

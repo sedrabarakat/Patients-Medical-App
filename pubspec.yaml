@@ -79,6 +79,10 @@ dependencies:
   animate_do: ^3.3.4
   floating_bubbles: ^2.6.2
 
+  hive_flutter: ^1.1.0
+
+  flutter_custom_clippers: ^2.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -127,6 +131,11 @@ flutter:
       fonts:
         - asset: assets/fonts/Poppins-Bold.ttf
         - asset: assets/fonts/Poppins-Regular.ttf
+    - family: Lobster-Regular
+      fonts:
+        - asset: assets/fonts/Lobster-Regular.ttf
+
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

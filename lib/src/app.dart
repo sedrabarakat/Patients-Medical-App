@@ -27,7 +27,7 @@ class PatientApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit(getIt())),
       ],
       child: ScreenUtilInit(
-        designSize: const Size(1600, 1000),
+        designSize: const Size(360,690),
         minTextAdapt: true,
         splitScreenMode: true,
         child: BlocListener<PusherCubit, PusherStates>(

@@ -5,7 +5,7 @@ class ColorsHelper {
 
   static const primary = Color(0XFF2A2AC0);
   static const primaryDark = Color(0XFF181461);
-  static Color tealLightDark = Colors.teal.shade600;
+  static Color tealLightDark = Color(0xFFA9A9E5);
   // static const primaryDark = Color(0XFF181461);
   static const white = Color(0xFFFFFFFF);
   static const black = Colors.black;

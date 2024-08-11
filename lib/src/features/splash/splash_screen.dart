@@ -9,7 +9,9 @@ import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/core/utils/values_manager.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  String pushRoute;
+  SplashScreen({super.key,required this.pushRoute});
+
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -18,15 +20,15 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    navigateToLoginScreen();
+    navigateToScreen();
     super.initState();
   }
 
-  void navigateToLoginScreen() {
+  void navigateToScreen() {
     Future.delayed(
       const Duration(seconds: 3),
-      () {
-        context.pushReplacement(AppRouter.kLogin);
+          () {
+        context.pushReplacement(widget.pushRoute);
       },
     );
   }
@@ -51,9 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             SvgPicture.asset(AssetsManager.logo),
             const SizedBox(
-              height: AppSize.s16,
+              height: AppSize.s16
             ),
-            const Text(
+            Text(
               AppString.appName,
               style: StyleManager.fontRegular20White,
             )

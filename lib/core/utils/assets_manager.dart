@@ -5,7 +5,7 @@ class AssetsManager {
 
 /* Svg Images */
   static const logo = '${_imagePath}logo.svg';
-  static const login = '${_imagePath}login.png';
+  static const login = '${_imagePath}Online Doctor-amico.png';
   static const calender = '${_imagePath}calender.svg';
   static const clock = '${_imagePath}clock.svg';
   static const user = '${_imagePath}user.png';
@@ -18,5 +18,7 @@ class AssetsManager {
   static const RingTone="${_Tones}Lights.mp3";
   ///animation
   static const GreenRing="${_AnimationPath}Green_Ring.json";
+  static const favorite="${_AnimationPath}favorite.gif";
+
 
 }

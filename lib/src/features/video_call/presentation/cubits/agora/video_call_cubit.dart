@@ -8,8 +8,6 @@ part 'video_call_state.dart';
 
 class VideoCallCubit extends Cubit<VideoCallState> {
 
-
-
   int uid = 0; //UID of the local user
   var RemoteUid;
 

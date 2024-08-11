@@ -1,6 +1,7 @@
 /* Here goes the text styles */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
 
 abstract class StyleManager {
@@ -33,6 +34,11 @@ abstract class StyleManager {
   );
 
   /*>>>>>>>>>> Bold <<<<<<<<<<*/
+  static TextStyle fontBold60= TextStyle(
+      fontSize: 30.sp,fontWeight: FontWeight.bold,
+      color: ColorsHelper.white,
+      fontFamily: 'Lobster-Regular'
+  );
   static const TextStyle fontBold40White = TextStyle(
     fontFamily: 'Poppins-bold',
     color: ColorsHelper.white,
@@ -72,6 +78,11 @@ abstract class StyleManager {
     fontSize: 20,
     fontWeight: FontWeight.w400,
     color: ColorsHelper.white,
+  );
+  static const TextStyle fontRegular18primary = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: ColorsHelper.grey,
   );
   static const TextStyle fontRegular16primary = TextStyle(
     fontSize: 16,
@@ -124,4 +135,12 @@ abstract class StyleManager {
       ],
     ),
   );
+
+  static BoxDecoration Circle_Shape({required Color color}) {
+    return BoxDecoration(
+      shape: BoxShape.circle,
+      color: color,
+
+    );
+  }
 }

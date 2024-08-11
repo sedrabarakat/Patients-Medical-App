@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Stack(
             children: [
