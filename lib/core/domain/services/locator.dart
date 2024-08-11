@@ -6,8 +6,12 @@ import 'package:patient_app/src/features/auth/data/data_source/remote/auth_remot
 import 'package:patient_app/src/features/auth/domain/repositories/auth_repository.dart';
 import 'package:patient_app/src/features/video_call/data/remote/pusher_services.dart';
 import 'package:patient_app/src/features/video_call/data/repos/pusher_repo_impl.dart';
+import 'package:patient_app/src/features/video_call/data/repos/schedule_repo_impl.dart';
 import 'package:patient_app/src/features/video_call/domain/pusher_repo.dart';
+import 'package:patient_app/src/features/video_call/domain/schedule_repo.dart';
 import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_cubit.dart';
+
+import '../../../src/features/video_call/data/remote/remote_schedule.dart';
 
 final getIt = GetIt.I;
 
@@ -33,5 +37,13 @@ Future locatorSetUp() async {
   /*>>>>>>>>>> PUSHER Cubit<<<<<<<<<<*/
   getIt.registerLazySingleton<PusherCubit>(
     () => PusherCubit(getIt()),
+  );
+
+  /*>>>>>>>>>> Schedule <<<<<<<<<<*/
+  getIt.registerLazySingleton<RemoteSchedule>(
+      ()=>RemoteSchedule(getIt())
+  );
+  getIt.registerLazySingleton<ScheduleRepo>(
+          ()=>ScheduleRepoImpl(getIt())
   );
 }

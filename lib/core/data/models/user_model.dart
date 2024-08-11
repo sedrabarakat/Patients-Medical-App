@@ -1,52 +1,8 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'user_model.g.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'user_model.g.dart';
 @JsonSerializable()
 class UserModel {
-  @JsonKey(name: 'birth_date')
-  final String birthDate;
-  final String age;
-  final String gender;
-  final String address;
-  @JsonKey(name: 'blood_type')
-  final String bloodType;
-  @JsonKey(name: 'marital_status')
-  final String maritalStatus;
-  final String? habits;
-  final String proffesion;
-  final String diabetes;
-  @JsonKey(name: 'blood_pressure')
-  final String bloodPressure;
-  final String wallet;
-  @JsonKey(name: 'user_id')
-  final int userId;
-
-  final int id;
-  @JsonKey(name: 'user')
-  final PersonalInformationModel personalInformation;
-  UserModel({
-    required this.address,
-    required this.age,
-    required this.birthDate,
-    required this.bloodPressure,
-    required this.bloodType,
-    required this.diabetes,
-    required this.gender,
-    required this.id,
-    required this.maritalStatus,
-    required this.personalInformation,
-    required this.proffesion,
-    required this.userId,
-    required this.wallet,
-    this.habits,
-  });
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
-  Map<String, dynamic> toJson() => _$UserModelToJson(this);
-}
-
-@JsonSerializable()
-class PersonalInformationModel {
   final int id;
   @JsonKey(name: 'first_name')
   final String firstName;
@@ -62,7 +18,7 @@ class PersonalInformationModel {
   final String? description;
   @JsonKey(name: 'remember_token')
   final String? rememberToken;
-  PersonalInformationModel({
+  UserModel({
     required this.firstName,
     required this.middleName,
     required this.lastName,
@@ -73,9 +29,9 @@ class PersonalInformationModel {
     this.description,
     this.rememberToken,
   });
-  factory PersonalInformationModel.fromJson(Map<String, dynamic> json) =>
-      _$PersonalInformationModelFromJson(json);
-  Map<String, dynamic> toJson() => _$PersonalInformationModelToJson(this);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
   String get fullName => "$firstName $lastName";
 }

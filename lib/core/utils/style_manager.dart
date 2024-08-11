@@ -51,6 +51,12 @@ abstract class StyleManager {
     fontFamily: 'Poppins-bold',
     color: ColorsHelper.black,
   );
+  static const TextStyle fontBold20Black = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Poppins-bold',
+    color: ColorsHelper.black,
+  );
   static TextStyle fontBold16Black = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,
@@ -111,6 +117,11 @@ abstract class StyleManager {
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: ColorsHelper.black,
+  );
+  static const TextStyle fontRegular12Primary = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: ColorsHelper.primary,
   );
   static const TextStyle fontRegular14Primary = TextStyle(
     fontSize: 14,

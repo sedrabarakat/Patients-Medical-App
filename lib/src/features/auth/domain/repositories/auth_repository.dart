@@ -2,9 +2,11 @@ import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:patient_app/core/data/models/base_model.dart';
-import 'package:patient_app/core/data/models/user_model.dart';
+import 'package:patient_app/core/data/models/patient_model.dart';
 import 'package:patient_app/core/domain/error_handler/network_exceptions.dart';
 import 'package:patient_app/src/features/auth/data/data_source/remote/auth_remote_data_source.dart';
+
+import '../../../../../core/data/models/user_model.dart';
 
 class AuthRepository {
   final AuthRemoteDataSource _authRemoteDataSource;
@@ -21,7 +23,7 @@ class AuthRepository {
     }
   }
 
-  Future<Either<NetworkExceptions, BaseModel<PersonalInformationModel>>>
+  Future<Either<NetworkExceptions, BaseModel<UserModel>>>
       verifyCode(String phoneNumber, String code) async {
     try {
       final response =
@@ -32,7 +34,7 @@ class AuthRepository {
     }
   }
 
-  Future<Either<NetworkExceptions, BaseModel<UserModel>>> register({
+  Future<Either<NetworkExceptions, BaseModel<PatientModel>>> register({
     required String firstName,
     required String middleName,
     required String lastName,

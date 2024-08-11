@@ -7,6 +7,7 @@ import 'package:patient_app/src/features/favoriate/presentation/pages/favorite_p
 import 'package:patient_app/src/features/home/presentation/pages/home_screen_content.dart';
 import 'package:patient_app/src/features/patient_profile/presentation/pages/patient_profile_page.dart';
 import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
+import 'package:patient_app/src/features/video_call/presentation/screens/calles_list.dart';
 import 'package:patient_app/src/features/video_call/presentation/screens/video_call.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<Widget> bottomBarPages = [
     const HomeContent(),
     const FavoritePage(),
-    const VideoCall(),
+    const CallesList(),
     const PatientProfilePage(),
     const SettingPage(),
   ];

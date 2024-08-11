@@ -21,7 +21,7 @@ final class RequestCodeErrorState extends AuthState {
 final class VerifyCodeLoadingState extends AuthState {}
 
 final class VerifyCodeSuccessState extends AuthState {
-  final PersonalInformationModel userData;
+  final UserModel userData;
   VerifyCodeSuccessState({required this.userData});
 }
 
@@ -34,7 +34,7 @@ final class VerifyCodeErrorState extends AuthState {
 final class SignUpLoadingState extends AuthState {}
 
 final class SignUpSuccessState extends AuthState {
-  final UserModel userData;
+  final PatientModel userData;
   SignUpSuccessState({required this.userData});
 }
 

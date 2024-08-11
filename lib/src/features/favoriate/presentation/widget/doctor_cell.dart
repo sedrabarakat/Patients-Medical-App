@@ -24,13 +24,14 @@ Widget doctorCell({
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image_widget(image: null),
+            SizedBox(width: 15.w,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("David back",style: StyleManager.fontRegular18primary
+                Text("David back",style: StyleManager.fontBold20Black
                 ),
               ],),
-            SizedBox(width: 40.w,),
+            SizedBox(width: 60.w,),
             IconButton(onPressed: (){}, icon: Icon(Icons.favorite,
             color: Colors.red.shade800,))
           ],

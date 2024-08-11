@@ -11,8 +11,7 @@ Widget Image_widget({
 
 }){
   return Container(
-
-      height: 100.h,width: 80.w,
+      width: 55.w,
       decoration: StyleManager.Circle_Shape(color: Colors.black26),
       child: (image!=null)?SizedBox():Image.asset(AssetsManager.user,fit: BoxFit.contain)
   );

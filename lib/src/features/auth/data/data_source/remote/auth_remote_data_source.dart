@@ -1,10 +1,11 @@
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:patient_app/core/data/models/base_model.dart';
-import 'package:patient_app/core/data/models/user_model.dart';
+import 'package:patient_app/core/data/models/patient_model.dart';
 import 'package:patient_app/core/domain/urls/app_url.dart';
 import 'package:patient_app/core/helper/dio_helper.dart';
 import '../../../../../../core/data/data_source/local.dart';
+import '../../../../../../core/data/models/user_model.dart';
 import '../../../../../../core/domain/services/api_service.dart';
 
 class AuthRemoteDataSource {
@@ -21,7 +22,7 @@ class AuthRemoteDataSource {
     return BaseModel(data: null, message: response['message']);
   }
 
-  Future<BaseModel<PersonalInformationModel>> verifiyCode(
+  Future<BaseModel<UserModel>> verifiyCode(
       String phoneNumber, String code) async {
     final response = await _apiServices.post(AppUrl.verifyCode, body: {
       'phone_number': phoneNumber,
@@ -30,10 +31,10 @@ class AuthRemoteDataSource {
     await HiveService.Auth_Box!.put('Token',response['token']);
     DioHelper().addTokenInterceptor();
     return BaseModel.fromJson(
-        response, (json) => PersonalInformationModel.fromJson(json));
+        response, (json) => UserModel.fromJson(json));
   }
 
-  Future<BaseModel<UserModel>> register({
+  Future<BaseModel<PatientModel>> register({
     required String firstName,
     required String middleName,
     required String lastName,
@@ -81,6 +82,6 @@ class AuthRemoteDataSource {
         },
       ),
     );
-    return BaseModel.fromJson(response, (json) => UserModel.fromJson(json));
+    return BaseModel.fromJson(response, (json) => PatientModel.fromJson(json));
   }
 }

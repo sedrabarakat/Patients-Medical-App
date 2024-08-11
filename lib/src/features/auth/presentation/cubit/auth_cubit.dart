@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_app/core/data/models/user_model.dart';
+import 'package:patient_app/core/data/models/patient_model.dart';
 import 'package:patient_app/core/domain/error_handler/network_exceptions.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/helper/image_helper.dart';
 import 'package:patient_app/src/features/auth/domain/repositories/auth_repository.dart';
 import 'package:progress_state_button/progress_button.dart';
+
+import '../../../../../core/data/models/user_model.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
