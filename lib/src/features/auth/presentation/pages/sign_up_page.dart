@@ -16,7 +16,6 @@ import 'package:patient_app/src/features/auth/presentation/pages/widgets/profile
 import '../../../../../core/utils/padding_manager.dart';
 import '../../../../../core/widgets/custom_row_text_button.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
-import '../../../../../core/widgets/custom_button.dart';
 import '../cubit/auth_cubit.dart';
 import 'package:gap/gap.dart';
 
@@ -57,7 +56,7 @@ class SignUpPage extends StatelessWidget {
               ),
               Positioned.fill(
                 child: Form(
-                  key: cubit.formState,
+                  key: cubit.signUpFormState,
                   child: ListView(
                     padding: AppPadding.screenPadding,
                     children: [
@@ -228,11 +227,12 @@ class SignUpPage extends StatelessWidget {
                         builder: (context, state) {
                           return CustomStateButton(
                             onPressed: () async {
-                              await BlocProvider.of<AuthCubit>(context)
-                                  .register();
+                              if (cubit.signUpFormState.currentState!
+                                  .validate()) {
+                                await cubit.register();
+                              }
                             },
-                            currentState: BlocProvider.of<AuthCubit>(context)
-                                .registerButtonState,
+                            currentState: cubit.registerButtonState,
                             label: AppLocalizations.of(context)!.signup,
                           );
                         },

@@ -86,7 +86,15 @@ class VerificationScreen extends StatelessWidget {
                   },
                 ),
                 const Gap(20),
-                BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+                BlocBuilder<AuthCubit, AuthState>(
+                    buildWhen: (previous, current) {
+                  if (current is FinishTimeState) {
+                    return true;
+                  } else if (current is RequestCodeSuccessState) {
+                    return true;
+                  }
+                  return false;
+                }, builder: (context, state) {
                   return ResendCountDown(
                     secondsToWait: Duration(
                         seconds:

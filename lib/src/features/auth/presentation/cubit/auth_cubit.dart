@@ -19,8 +19,8 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._repo) : super(AuthInitial());
   static AuthCubit get(BuildContext context) => BlocProvider.of(context);
 
-  final formState = GlobalKey<FormState>();
   final loginFormState = GlobalKey<FormState>();
+  final signUpFormState = GlobalKey<FormState>();
 
   final formStateVerify = GlobalKey<FormState>();
   //login controller
