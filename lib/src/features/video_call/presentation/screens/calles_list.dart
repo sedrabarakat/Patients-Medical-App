@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/core/widgets/flexible_appbar.dart';
+import 'package:patient_app/core/widgets/toast_bar.dart';
 import 'package:patient_app/src/features/video_call/presentation/cubits/apis_cubit/schedule_list_states.dart';
-import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_cubit.dart';
-import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_states.dart';
-
 import '../../../../../core/domain/services/locator.dart';
 import '../../../../../core/utils/style_manager.dart';
 import '../../../../../core/widgets/clip_path_container.dart';
@@ -21,7 +19,16 @@ class CallesList extends StatelessWidget {
     return BlocProvider(
       create: (context)=>ScheduleListCubit(getIt())..getScheduleList(),
       child: BlocConsumer<ScheduleListCubit, ScheduleListStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is Success_ReserveSchedule_State){
+            ToastBar.onSuccess(context, message: "Reserved Successfully", title: "Reservation");
+          }
+         /* if(state is Error_ReserveSchedule_State) {
+            ToastBar.onNetworkFailure(context, networkException: Error_ReserveSchedule_State!.error);
+          }*/
+          if(state is Success_Delete_ReserveSchedule_State)
+            ToastBar.onSuccess(context, message: "${Success_Delete_ReserveSchedule_State.message}", title: "Reservation");
+        },
         builder: (context, state) {
           ScheduleListCubit cubit=ScheduleListCubit.get(context);
           return Scaffold(
@@ -40,8 +47,7 @@ class CallesList extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.separated(
-                      itemBuilder: (ctx,index)=>doctorReservationCell(context: ctx,is_reserved: false,
-                        listCell:cubit.Schedules[index]
+                      itemBuilder: (ctx,index)=>doctorReservationCell(context: ctx,listCell:cubit.Schedules[index]
                       ),
                       separatorBuilder: (ctx,index)=>SizedBox(),
                       itemCount: cubit.Schedules.length),

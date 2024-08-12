@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_app/core/domain/error_handler/network_exceptions.dart';
 import 'package:patient_app/src/features/video_call/data/models/schedules_model.dart';
-import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_states.dart';
-
 import '../../../../../core/data/models/base_model.dart';
 import '../../domain/schedule_repo.dart';
 import '../remote/remote_schedule.dart';
@@ -27,14 +25,10 @@ class ScheduleRepoImpl extends ScheduleRepo {
   }
 
   Future<Either<NetworkExceptions, String>> reserveSchedule(
-      {required int online_guidance_schedule_id,
-      required int doctor_id,
-      required int patient_id}) async {
+      {required int online_guidance_schedule_id}) async {
     try {
       BaseModel baseModel = await remoteSource.ReserveSchedule(
-          online_guidance_schedule_id: online_guidance_schedule_id,
-          doctor_id: doctor_id,
-          patient_id: patient_id);
+          online_guidance_schedule_id: online_guidance_schedule_id);
       return right(baseModel.message);
     } catch (error) {
       return left(NetworkExceptions.getException(error));

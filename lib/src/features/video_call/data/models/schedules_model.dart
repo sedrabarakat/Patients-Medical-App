@@ -9,6 +9,7 @@ part 'schedules_model.g.dart';
 class SchedulesModel{
   int id;
   int doctor_id;
+  int ?my_registeration_id;
   String  date;
   String from_min;
   String to_min;
@@ -18,7 +19,7 @@ class SchedulesModel{
 
 
   SchedulesModel(this.id, this.doctor_id, this.date, this.from_min, this.to_min,
-      this.created_at, this.updated_at,this.doctor);
+      this.created_at, this.updated_at,this.doctor,this.my_registeration_id);
 
   factory SchedulesModel.fromJson(Map<String,dynamic>json)=>_$SchedulesModelFromJson(json);
 

@@ -9,10 +9,11 @@ import '../cubits/apis_cubit/schedule_list_cubit.dart';
 
 Widget doctorReservationCell({
   required context,
-  required bool is_reserved,
   required SchedulesModel listCell
 }){
   ScheduleListCubit cubit=ScheduleListCubit.get(context);
+  bool is_reserved= (listCell.my_registeration_id!=null)?true:false;
+
   return Padding(
     padding: EdgeInsets.symmetric(vertical: 7.h,horizontal: 10.w),
     child: Container(
@@ -31,19 +32,19 @@ Widget doctorReservationCell({
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${listCell.doctor.user.fullName}",style: StyleManager.fontBold20Black
+                Text(listCell.doctor.user.fullName,style: StyleManager.fontBold20Black
                 ),
-                Text_Time(date: 'Nervous',text: 'Section'),
-                Text_Time(date: " ${listCell.date}",text: 'Date'),
-               Text_Time(date: listCell.from_min.substring(0, 5),text: 'From'),
-               Text_Time(date: "     ${listCell.to_min.substring(0, 5)}",text: 'To'),
+                Text_Time(date: listCell.doctor.section!.sectionName,text: 'Section'),
+                Text_Time(date: "    ${listCell.date}",text: 'Date'),
+               Text_Time(date:"   ${listCell.from_min.substring(0, 5)}",text: 'From'),
+               Text_Time(date: "        ${listCell.to_min.substring(0, 5)}",text: 'To'),
                 if(is_reserved)
                   Already_Reserved()
               ],),
-            SizedBox(width: (is_reserved)?4.w:28.w,),
+            SizedBox(width: (is_reserved)?4.w:15.w,),
             if(is_reserved)
               TextButton(onPressed: (){
-               // cubit.deleteReserveSchedule(registeration_Id: 22);
+                cubit.deleteReserveSchedule(registeration_Id: listCell.my_registeration_id!);
               }, child: Text('Cancel'))
             else
               TextButton(onPressed: (){

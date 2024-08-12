@@ -8,9 +8,7 @@ abstract class ScheduleRepo{
   Future<Either<NetworkExceptions,List<SchedulesModel>>>getSchedules();
 
   Future<Either<NetworkExceptions, String>> reserveSchedule(
-      {required int online_guidance_schedule_id,
-        required int doctor_id,
-        required int patient_id});
+      {required int online_guidance_schedule_id});
 
   Future<Either<NetworkExceptions, String>> DeleteReserveSchedule(
       {required int registeration_Id,
