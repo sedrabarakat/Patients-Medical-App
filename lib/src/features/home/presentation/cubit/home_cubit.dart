@@ -18,4 +18,6 @@ class HomeCubit extends Cubit<HomeState> {
       emit(ErrorHome(e.toString()));
     }
   }
+
+
 }

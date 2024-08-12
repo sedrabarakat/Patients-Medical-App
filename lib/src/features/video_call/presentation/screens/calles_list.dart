@@ -44,7 +44,7 @@ class CallesList extends StatelessWidget {
                         listCell:cubit.Schedules[index]
                       ),
                       separatorBuilder: (ctx,index)=>SizedBox(),
-                      itemCount: 22),
+                      itemCount: cubit.Schedules.length),
                 )
 
               ],

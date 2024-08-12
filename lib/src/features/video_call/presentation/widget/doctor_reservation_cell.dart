@@ -5,12 +5,14 @@ import 'package:patient_app/src/features/video_call/data/models/schedules_model.
 import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/utils/style_manager.dart';
 import '../../../../../core/widgets/image_widget.dart';
+import '../cubits/apis_cubit/schedule_list_cubit.dart';
 
 Widget doctorReservationCell({
   required context,
   required bool is_reserved,
   required SchedulesModel listCell
 }){
+  ScheduleListCubit cubit=ScheduleListCubit.get(context);
   return Padding(
     padding: EdgeInsets.symmetric(vertical: 7.h,horizontal: 10.w),
     child: Container(
@@ -29,20 +31,27 @@ Widget doctorReservationCell({
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${listCell}",style: StyleManager.fontBold20Black
+                Text("${listCell.doctor.user.fullName}",style: StyleManager.fontBold20Black
                 ),
                 Text_Time(date: 'Nervous',text: 'Section'),
-                Text_Time(date: '2002-22-2',text: 'Date'),
-               Text_Time(date: '00:00',text: 'From'),
-               Text_Time(date: '12:12',text: 'To'),
+                Text_Time(date: " ${listCell.date}",text: 'Date'),
+               Text_Time(date: listCell.from_min.substring(0, 5),text: 'From'),
+               Text_Time(date: "     ${listCell.to_min.substring(0, 5)}",text: 'To'),
                 if(is_reserved)
                   Already_Reserved()
               ],),
-            SizedBox(width: (is_reserved)?4.w:40.w,),
+            SizedBox(width: (is_reserved)?4.w:28.w,),
             if(is_reserved)
-              TextButton(onPressed: (){}, child: Text('Cancel'))
+              TextButton(onPressed: (){
+               // cubit.deleteReserveSchedule(registeration_Id: 22);
+              }, child: Text('Cancel'))
             else
-              TextButton(onPressed: (){}, child: Text('Reserve'))
+              TextButton(onPressed: (){
+                cubit.reserveSchedule(
+                    online_guidance_schedule_id: listCell.id,
+                    doctor_id: listCell.doctor_id,
+                    patient_id: 61);
+              }, child: Text('Reserve'))
           ],
         )
     ),

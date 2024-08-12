@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../helper/color_helper.dart';
 import '../utils/style_manager.dart';
@@ -9,6 +10,7 @@ PreferredSizeWidget appBarS({
 }){
   return AppBar(
     flexibleSpace: FlexibleSpaceBar(
+      titlePadding: EdgeInsets.only(top: 10.h),
       centerTitle: true,
       title: Text(title, style: StyleManager.fontBold60),
       background: Container(
