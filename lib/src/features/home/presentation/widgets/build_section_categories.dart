@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
+import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/src/features/home/presentation/cubit/home_cubit.dart';
 import 'package:patient_app/src/features/home/presentation/widgets/section_category.dart';
 import '../../../../../core/helper/dimension_manager.dart';
@@ -27,7 +29,9 @@ class _SectionCategoriesState extends State<SectionCategories> {
               style: StyleManager.fontBold16Black,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(AppRouter.kSelectAppointment);
+              },
               child: Text(
                 AppLocalizations.of(context)!.seeAll,
               ),
