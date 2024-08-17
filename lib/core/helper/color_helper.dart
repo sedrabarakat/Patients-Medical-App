@@ -22,6 +22,9 @@ class ColorsHelper {
   static const Color blueDarker = Color(0xFF202E7A); // Darker blue
   static const Color blueDarkest = Color(0xFF141C4C);
 
+  static const Color indigo=Colors.indigo;
+  static const Color indigoAccent=Colors.indigoAccent;
+
   static const Color lightBlue = Color(0xFF5AC9FF); // Light blue
   static const Color greenishBlue = Color(0xFF36D1DC); // Greenish blue
   static const Color Skyblue = Color(0xFF1C92D2); // Blue

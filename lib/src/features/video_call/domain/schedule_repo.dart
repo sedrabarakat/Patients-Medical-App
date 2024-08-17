@@ -14,13 +14,6 @@ abstract class ScheduleRepo{
       {required int registeration_Id,
       });
 
-  Future<Either<NetworkExceptions, String>> AcceptCall(
-      {required String channelName,
-      });
-
-  Future<Either<NetworkExceptions, String>> DeclineCall(
-      {required String channelName,
-      });
 
 
 }

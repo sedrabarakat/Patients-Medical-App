@@ -2,16 +2,19 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/src/features/home/presentation/cubit/home_cubit.dart';
 import '../../../../../../core/domain/urls/app_url.dart';
 part 'video_call_state.dart';
 
 
 class VideoCallCubit extends Cubit<VideoCallState> {
 
-  int uid = 0; //UID of the local user
+  int uid = HomeCubit.patientModel!.userId; //UID of the local user
   var RemoteUid;
+  var channel;
 
   bool localUserJoined = false;
+  bool remoteUserJoined = false;
 
   RtcEngine ? engine;
 
@@ -33,13 +36,15 @@ class VideoCallCubit extends Cubit<VideoCallState> {
     engine= createAgoraRtcEngine();
 
     this.RemoteUid=RemoteUid;
+    this.channel=channel;
 
-    await engine!.initialize(const RtcEngineContext(
+    await engine!.initialize(
+        const RtcEngineContext(
       appId: AppID_Agora,
       channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
     ));
     emit(InitializedEngineState());
-
+    localUserJoined = true;
     engine!.registerEventHandler(
       RtcEngineEventHandler(
         onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
@@ -50,6 +55,7 @@ class VideoCallCubit extends Cubit<VideoCallState> {
         },
         onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
           debugPrint("remote user $remoteUid joined");
+          remoteUserJoined=true;
           RemoteUid = remoteUid;
           emit(RemoteUserJoined());
         },
@@ -69,7 +75,7 @@ class VideoCallCubit extends Cubit<VideoCallState> {
     await engine!.enableVideo();
     await engine!.startPreview();
     await engine!.joinChannel(
-        token: token,
+        token: '',
         channelId: channel,
         uid: uid,
         options: const ChannelMediaOptions());

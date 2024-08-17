@@ -29,10 +29,11 @@ class VideoCall extends StatelessWidget {
                         child: remoteVideo(
                             remoteUid: cubit.RemoteUid,
                             engine: cubit.engine!,
-                            channel_name: 's'),
+                            channel_name: cubit.channel
+                        ),
                       ),
                       localVideo(cubit: cubit),
-                      buttonsBar(cubit: cubit)
+                      buttonsBar(cubit: cubit,context: context)
                     ],
                   ),
                 )

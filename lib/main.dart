@@ -16,10 +16,11 @@ void main() async {
   await Hive.initFlutter();
   await HiveService.initilized();
   TokenHelper.init();
-
+  
   await locatorSetUp();
   await PusherService.initPusher();
   PusherService.handleConnectionStates();
+
 
 
   runApp(const PatientApp());

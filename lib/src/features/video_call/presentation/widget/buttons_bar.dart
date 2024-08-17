@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_cubit.dart';
 import '../cubits/agora/video_call_cubit.dart';
 
 Widget buttonsBar({
-  required VideoCallCubit cubit
+  required VideoCallCubit cubit,
+  required context
 }){
   return Align(
     alignment: Alignment.bottomCenter,
@@ -39,8 +41,10 @@ Widget buttonsBar({
             ),
             IconButton(
               onPressed:
-              cubit
-                  .endCall,
+              ()async{
+                cubit.endCall;
+                await PusherCubit.get(context).DeclineCall();
+              },
               style: IconButton.styleFrom(
                 backgroundColor: Colors.red,
               ),

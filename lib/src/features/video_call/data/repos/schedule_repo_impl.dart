@@ -48,27 +48,4 @@ class ScheduleRepoImpl extends ScheduleRepo {
     }
   }
 
-  @override
-  Future<Either<NetworkExceptions, String>> AcceptCall(
-      {required String channelName,
-      }) async {
-    try {
-      BaseModel baseModel = await remoteSource.AccepteCall(channelName: channelName);
-      return right(baseModel.message);
-    } catch (error) {
-      return left(NetworkExceptions.getException(error));
-    }
-  }
-
-  @override
-  Future<Either<NetworkExceptions, String>> DeclineCall(
-      {required String channelName,
-      }) async {
-    try {
-      BaseModel baseModel = await remoteSource.DeclineCall(channelName: channelName);
-      return right(baseModel.message);
-    } catch (error) {
-      return left(NetworkExceptions.getException(error));
-    }
-  }
 }

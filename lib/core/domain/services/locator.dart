@@ -6,6 +6,7 @@ import 'package:patient_app/src/features/appointments/data/datasources/appointme
 import 'package:patient_app/src/features/appointments/domain/appointment_repo.dart';
 import 'package:patient_app/src/features/auth/data/data_source/remote/auth_remote_data_source.dart';
 import 'package:patient_app/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:patient_app/src/features/home/data/remote/home_remote.dart';
 import 'package:patient_app/src/features/patient_profile/data/datasource/patient_remote_data_source.dart';
 import 'package:patient_app/src/features/patient_profile/domain/patient_repo.dart';
 import 'package:patient_app/src/features/posts/data/datasources/posts_remote_data_source.dart';
@@ -38,13 +39,8 @@ Future locatorSetUp() async {
   );
   /*>>>>>>>>>> PUSHER Service<<<<<<<<<<*/
   getIt.registerLazySingleton<PusherService>(
-    () => PusherService(),
+    () => PusherService(getIt()),
   );
-  /*>>>>>>>>>> PUSHER Cubit<<<<<<<<<<*/
-  getIt.registerLazySingleton<PusherCubit>(
-    () => PusherCubit(getIt()),
-  );
-
   /*>>>>>>>>>> Schedule <<<<<<<<<<*/
   getIt.registerLazySingleton<RemoteSchedule>(() => RemoteSchedule(getIt()));
   getIt.registerLazySingleton<ScheduleRepo>(() => ScheduleRepoImpl(getIt()));
@@ -70,4 +66,11 @@ Future locatorSetUp() async {
   getIt.registerLazySingleton<PostsRepo>(
     () => PostsRepo(getIt()),
   );
+  /*>>>>>>>>>> Home <<<<<<<<<<*/
+  getIt.registerLazySingleton<HomeRemote>(
+          ()=>HomeRemote(getIt())
+  );
+
+
+
 }

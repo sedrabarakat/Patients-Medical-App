@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import '../../../../../core/data/models/patient_model.dart';
 import '../../data/model/doctor.dart';
 import '../../domain/repositories/doctor_repository.dart';
 
@@ -18,6 +19,22 @@ class HomeCubit extends Cubit<HomeState> {
       emit(ErrorHome(e.toString()));
     }
   }
+
+  static PatientModel ?patientModel;
+  Future<void>getDoctorInfo()async{
+   emit(Loading_getPatientInfo());
+    await doctorRepository.getDoctorInfo().then((value){
+      value.fold((error){
+        print(error);
+       emit(Error_getPatientInfo());
+      }, (DoctorModel){
+        patientModel=DoctorModel;
+        emit(Success_getPatientInfo());
+      });
+    });
+  }
+
+
 
 
 }

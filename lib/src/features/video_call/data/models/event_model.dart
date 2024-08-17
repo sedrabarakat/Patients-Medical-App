@@ -1,21 +1,26 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_app/core/data/models/doctor_model.dart';
+import 'package:patient_app/core/data/models/section_model.dart';
+import 'package:patient_app/core/data/models/user_model.dart';
 part 'event_model.g.dart';
 
 @JsonSerializable()
 class EventModel{
   @JsonKey(name: "id")
   int id;
-  @JsonKey(name: "name")
-  String name;
+  @JsonKey(name: "doctor")
+  DoctorModel doctor;
   @JsonKey(name: "channel")
   String channel;
   @JsonKey(name: "token")
   String token;
 
-  EventModel(this.id,this.name,this.channel,this.token);
+  EventModel(
+      this.id, this.doctor, this.channel, this.token);
 
   factory EventModel.fromJson(Map<String,dynamic>json)=>_$EventModelFromJson(json);
+
 
   Map<String,dynamic> ToJson()=>_$EventModelToJson(this);
 

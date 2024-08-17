@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,13 +15,19 @@ class RingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+    assetsAudioPlayer.open(
+      Audio(AssetsManager.RingTone),
+      autoStart: true,
+      loopMode: LoopMode.playlist,
+    );
     return BlocConsumer<PusherCubit, PusherStates>(
       listener: (context, state) {
-        if (state is AcceptCallState) {
-          context.push(AppRouter.kRingScreen);
+        if (state is Success_AcceptCall_State) {
+          context.go(AppRouter.kVideoCall);
         }
-        if (state is DeclineCallState) {
-          context.push(AppRouter.kCallsScreen);
+        if (state is Success_DeclineCall_State) {
+          context.go(AppRouter.kCallsScreen);
         }
       },
       builder: (context, states) {
@@ -34,16 +41,16 @@ class RingScreen extends StatelessWidget {
                 Center(
                     child: Image.asset(
                   AssetsManager.user,
-                  width: 200.h,
+                  width: 150.w,
                 )),
                 Padding(
-                  padding: EdgeInsets.only(top: 50.h, bottom: 300.h),
+                  padding: EdgeInsets.only(top: 10.h, bottom: 300.h),
                   child: Text(
-                    "Dr.Mira",
+                    'mmm',
                     style: StyleManager.fontExtraBold20Black,
                   ),
                 ),
-                callButtons(cubit: cubit, context: context)
+                callButtons(context: context,assetsAudioPlayer: assetsAudioPlayer)
               ],
             ),
           ),

@@ -10,16 +10,16 @@ class Success_ChannelListenState extends PusherStates{}
 
 class Error_ChannelListenState extends PusherStates{}
 
-class HandelingPusherStates extends PusherStates{}
+
 
 class Recive_EventState extends PusherStates{
   EventModel eventModel;
   Recive_EventState(this.eventModel);
 }
 
-class RingState extends PusherStates{}
+class Success_AcceptCall_State extends PusherStates{}
+class Error_AcceptCall_State extends PusherStates{}
 
+class Success_DeclineCall_State extends PusherStates{}
+class Error_DeclineCall_State extends PusherStates{}
 
-class AcceptCallState extends PusherStates{}
-
-class DeclineCallState extends PusherStates{}

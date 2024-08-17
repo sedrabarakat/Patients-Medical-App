@@ -1,5 +1,5 @@
 // const baseServ = "http://127.0.0.1:8001/";
-const baseServ = "http://192.168.1.13:8000/";
+const baseServ = "http://192.168.1.4:8000/";
 const baseUrl = "${baseServ}api/";
 const auth = "auth/";
 const AppID_Agora = "53215bfd2c054ddc97c008da762ae819";
@@ -34,6 +34,9 @@ class AppUrl {
   static const getDoctors = '${baseUrl}dashboard/doctor';
   static const getDoctorAppointment =
       '${baseUrl}dashboard/appointment/getAvailableTime/';
+
+  static const getPatientInfo ='${baseUrl}patient/me';
+
 
   static const makeAppointment = "${baseUrl}dashboard/appointment/store";
   /*>>>>>>>>>>>>>>>>>>>> Posts <<<<<<<<<<<<<<<<<<<<*/

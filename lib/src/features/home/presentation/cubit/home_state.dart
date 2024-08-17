@@ -36,5 +36,8 @@ class SectionCategorySelected extends HomeState{
   @override
   List<Object> get props => [selectedSectionCategoryIndex] ;
 }
+class Loading_getPatientInfo extends HomeState{}
+class Success_getPatientInfo extends HomeState{}
+class Error_getPatientInfo extends HomeState{}
 
 

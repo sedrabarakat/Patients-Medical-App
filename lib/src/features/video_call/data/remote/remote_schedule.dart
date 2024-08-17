@@ -30,21 +30,7 @@ class RemoteSchedule{
     return BaseModel(data: Response['data'],message: Response['message']);
   }
 
-  Future<BaseModel>AccepteCall({
-    required String channelName
-})async{
-   final Response= await apiServices.post("${AppUrl.acceptCallEvent}$channelName");
 
-    return BaseModel(data: Response['data'],message: Response['message']);
-  }
-
-  Future<BaseModel>DeclineCall({
-    required String channelName
-  })async{
-    final Response= await apiServices.post("${AppUrl.declineCallEvent}$channelName");
-
-    return BaseModel(data: Response['data'],message: Response['message']);
-  }
 
 
 

@@ -29,8 +29,3 @@ class Error_Delete_ReserveSchedule_State extends ScheduleListStates{
  Error_Delete_ReserveSchedule_State();
 }
 
-class Success_AcceptCall_State extends ScheduleListStates{}
-class Error_AcceptCall_State extends ScheduleListStates{}
-
-class Success_DeclineCall_State extends ScheduleListStates{}
-class Error_DeclineCall_State extends ScheduleListStates{}

@@ -19,7 +19,7 @@ Widget doctorReservationCell({
     child: Container(
         clipBehavior: Clip.hardEdge,
         padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 10.h),
-        height:(is_reserved)?150.h:135.h,
+        height:(is_reserved)?170.h:135.h,
         decoration: BoxDecoration(
             color: ColorsHelper.tealLightDark.withOpacity(.2),
             borderRadius: BorderRadius.circular(30)
@@ -28,16 +28,16 @@ Widget doctorReservationCell({
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image_widget(image: null),
-            SizedBox(width: 20.w,),
+            SizedBox(width: 15.w,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(listCell.doctor.user.fullName,style: StyleManager.fontBold20Black
                 ),
-                Text_Time(date: listCell.doctor.section!.sectionName,text: 'Section'),
-                Text_Time(date: "    ${listCell.date}",text: 'Date'),
-               Text_Time(date:"   ${listCell.from_min.substring(0, 5)}",text: 'From'),
-               Text_Time(date: "        ${listCell.to_min.substring(0, 5)}",text: 'To'),
+                Text_Data(data: listCell.doctor.section!.sectionName,text: 'Section'),
+                Text_Data(data: "   ${listCell.date}",text: 'Date'),
+               Text_Data(data:"   ${listCell.from_min.substring(0, 5)}",text: 'From'),
+               Text_Data(data: "       ${listCell.to_min.substring(0, 5)}",text: 'To'),
                 if(is_reserved)
                   Already_Reserved()
               ],),
@@ -52,6 +52,7 @@ Widget doctorReservationCell({
                     online_guidance_schedule_id: listCell.id,
                     doctor_id: listCell.doctor_id,
                     patient_id: 61);
+
               }, child: Text('Reserve'))
           ],
         )
@@ -59,24 +60,25 @@ Widget doctorReservationCell({
   );
 }
 
-
-Widget Text_Time({
+Widget Text_Data({
   required String text,
-  required String date
+  required String data,
+  TextStyle ?textstyle
 }){
-  return Row(children: [
 
-    Text("$text : ",style: TextStyle(
-        fontSize: 15.sp,fontWeight: FontWeight.bold,
-        color: ColorsHelper.primary,
-        fontFamily: 'Lobster-Regular'
-    ),),
-    Text("$date"),
-  ],);
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.end,
+    children: [
+      Text("$text : ",style: (textstyle!=null)?textstyle:StyleManager.font14Bold,),
+      Text("$data",style: StyleManager.fontRegular14P,),
+    ],);
 }
 
+
+
 Widget Already_Reserved(){
-  return const Column(
+  return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
     Text('you have already reserved',

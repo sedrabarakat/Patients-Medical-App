@@ -67,6 +67,12 @@ abstract class StyleManager {
     fontWeight: FontWeight.w700,
     color: ColorsHelper.black,
   );
+  static TextStyle font14Bold= TextStyle(
+    fontSize: 14.sp,fontWeight: FontWeight.bold,
+    color: ColorsHelper.indigo,
+    fontFamily: 'Lobster-Regular',
+    overflow: TextOverflow.ellipsis,
+  );
   /*>>>>>>>>>> Medium <<<<<<<<<<*/
   static TextStyle fontMedium18 = const TextStyle(
     fontSize: 18,
@@ -123,15 +129,21 @@ abstract class StyleManager {
     color: ColorsHelper.black,
   );
 
+  static TextStyle fontRegular14P = const TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    color: Colors.black54,
+
+  );
   static const TextStyle fontRegular12Black = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: ColorsHelper.black,
   );
-  static const TextStyle fontRegular12Primary = TextStyle(
+  static TextStyle fontRegular12Primary = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: ColorsHelper.primary,
+    color: Colors.indigo.shade700,
   );
   static const TextStyle fontRegular14Primary = TextStyle(
     fontSize: 14,

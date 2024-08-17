@@ -127,4 +127,7 @@ class AppRouter {
       ),
     ],
   );
+  static void navigateToRingScreen(){
+    router.go(kRingScreen);
+  }
 }

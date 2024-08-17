@@ -59,31 +59,6 @@ class ScheduleListCubit extends Cubit<ScheduleListStates>{
     });
   }
 
-  Future<void>AcceptCall({
-    required String channelName
-  })async{
-    await scheduleRepo.AcceptCall(channelName: channelName)
-        .then((value){
-      value.fold((error) {
-        emit(Error_AcceptCall_State());
-      }, (message) {
-        emit(Success_AcceptCall_State());
-      });
-    });
-  }
-
-  Future<void>DeclineCall({
-    required String channelName
-  })async{
-    await scheduleRepo.DeclineCall(channelName: channelName)
-        .then((value){
-      value.fold((error) {
-        emit(Error_DeclineCall_State());
-      }, (message) {
-        emit(Success_DeclineCall_State());
-      });
-    });
-  }
 
 
 

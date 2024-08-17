@@ -1,31 +1,31 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/core/data/data_source/local.dart';
 import 'package:patient_app/src/features/video_call/data/models/event_model.dart';
 import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_states.dart';
-import '../../../../../../core/utils/assets_manager.dart';
 import '../../../domain/pusher_repo.dart';
 import '../agora/video_call_cubit.dart';
 
 class PusherCubit extends Cubit<PusherStates>{
 
-  final AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
-
 
    final PusherRepo pusherRepo;
+   final BuildContext context;
 
-  PusherCubit(this.pusherRepo):super(InitPusherState());
+
+  PusherCubit(this.pusherRepo,this.context):super(InitPusherState());
 
   static PusherCubit get(context)=>BlocProvider.of(context);
 
+
   Future listen2Channel({
-    int id=1,
-    required BuildContext context
+    int id=193,
 })async{
     emit(Load_ChannelListenState());
     try{
-      var events= await pusherRepo.eventsListen(id: id,pushercubit: get(context));
+      await pusherRepo.eventsListen(id: id);
       emit(Success_ChannelListenState());
     }
     catch(error){
@@ -34,35 +34,56 @@ class PusherCubit extends Cubit<PusherStates>{
     }
   }
 
-  EventModel ?CubitEventModel;
-  void recieveEvent({
-    required EventModel eventModel
-}){
-    CubitEventModel=eventModel;
-    emit(Recive_EventState(eventModel));
-    playRingtone();
-  }
 
-  void AcceptCall({
+  static EventModel ?Event_Model;
+  static void recieveEvent({
     required EventModel eventModel,
-    required context
+}){
+    Event_Model=eventModel;
+
+  }
+
+
+
+
+  //todo deleted
+  /*void AcceptCall({
+    required EventModel eventModel,
+    required context,
   })async{
-    assetsAudioPlayer.stop();
     await VideoCallCubit.get(context).initAgora(token: eventModel.token,channel: eventModel.channel,RemoteUid: eventModel.id);
-    emit(AcceptCallState());
-  }
+    //emit(AcceptCallState());
+  }*/
 
-  void DeclineCall(){
-    emit(DeclineCallState());
-    assetsAudioPlayer.stop();
-  }
+   Future<void>AcceptCall({
+     required BuildContext context
+})async{
+     await pusherRepo.AcceptCall(channelName: Event_Model!.channel)
+         .then((value){
+       value.fold((error) {
+         emit(Error_AcceptCall_State());
+       }, (message) async{
+         await VideoCallCubit.get(context).initAgora(
+             token: HiveService.Auth_Box!.get('Token'),
+             channel: Event_Model!.channel,
+             RemoteUid: Event_Model!.doctor.user.id);
+         emit(Success_AcceptCall_State());
+       });
+     });
+   }
 
-   void playRingtone() {
-    assetsAudioPlayer.open(
-      Audio(AssetsManager.RingTone),
-      autoStart: true,
-      loopMode: LoopMode.playlist,
-    );
-    emit(RingState());
-  }
+   Future<void>DeclineCall()async{
+     await pusherRepo.DeclineCall(channelName:  Event_Model!.channel)
+         .then((value){
+       value.fold((error) {
+         emit(Error_DeclineCall_State());
+       }, (message) {
+         emit(Success_DeclineCall_State());
+       });
+     });
+   }
+
+
+
+
 }
