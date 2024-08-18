@@ -40,8 +40,10 @@ class Header extends StatelessWidget {
             ),
             _circularIconWithRadius(
               IconButton(
-                icon: IconManager.notificationIcon,
+                icon: const Icon(Icons.settings),
                 onPressed: () {
+                  context.push(AppRouter.kSettings);
+                  //todo remove this
                   BlocProvider.of<AuthCubit>(context).getMyInformation();
                 },
               ),

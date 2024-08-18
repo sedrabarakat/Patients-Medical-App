@@ -18,7 +18,6 @@ import 'package:patient_app/src/features/appointments/presentation/cubit/appoint
 import 'package:patient_app/src/features/appointments/presentation/cubit/appointment_state.dart';
 import 'package:patient_app/src/features/appointments/presentation/pages/widgets/available_time_list.dart';
 import 'package:patient_app/src/features/appointments/presentation/pages/widgets/custom_calender.dart';
-import 'package:patient_app/src/features/auth/presentation/cubit/auth_cubit.dart';
 
 class SelectAppointmentScreen extends StatelessWidget {
   const SelectAppointmentScreen({super.key, required this.doctor});
@@ -173,10 +172,8 @@ class SelectAppointmentScreen extends StatelessWidget {
                             }
                             BlocProvider.of<AppointmentCubit>(context)
                                 .makeAppointment(
-                                    doctor.id,
-                                    BlocProvider.of<AuthCubit>(context)
-                                        .userData!
-                                        .id);
+                              doctor.id,
+                            );
                           },
                           currentState:
                               BlocProvider.of<AppointmentCubit>(context)

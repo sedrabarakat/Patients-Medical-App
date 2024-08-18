@@ -7,7 +7,6 @@ import 'package:patient_app/src/features/favoriate/presentation/pages/favorite_p
 import 'package:patient_app/src/features/home/presentation/pages/home_screen_content.dart';
 import 'package:patient_app/src/features/patient_profile/presentation/pages/pages/patient_profile_page.dart';
 import 'package:patient_app/src/features/posts/presentation/pages/posts_screen.dart';
-import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
 import 'package:patient_app/src/features/video_call/presentation/screens/calles_list.dart';
 
 class BottomNavigationScreen extends StatefulWidget {

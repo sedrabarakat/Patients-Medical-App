@@ -8,47 +8,57 @@ import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/utils/style_manager.dart';
 import '../../../../../core/widgets/image_widget.dart';
 
-
 Widget doctorCell({
   required context,
-  required DoctorModel doctor
-}){
-  FavCubit favCubit=FavCubit.get(context);
+  required DoctorModel doctor,
+  void Function()? onPressed,
+}) {
+  FavCubit favCubit = FavCubit.get(context);
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 7.h,horizontal: 15.w),
-    child: Container(
-        clipBehavior: Clip.hardEdge,
-        padding: EdgeInsets.symmetric(horizontal: 23.w,vertical: 10.h),
-        height: 80.h,
-        decoration: BoxDecoration(
-            color: ColorsHelper.blueAccent.withOpacity(.2),
-            borderRadius: BorderRadius.circular(30)
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image_widget(image: null),
-            SizedBox(width: 15.w,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(doctor.user.fullName,style: StyleManager.fontBold20Black
-                ),
-                Text_Data(text: 'Section', data: doctor.section!.sectionName)
-              ],),
-            SizedBox(width: 60.w,),
-            IconButton(onPressed: (){
-              favCubit.toggleFav(id: 2);
-            }, icon: Icon(Icons.favorite,
-            color: Colors.red.shade800,))
-          ],
-        )
+    padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 15.w),
+    child: GestureDetector(
+      onTap: onPressed,
+      child: Container(
+          clipBehavior: Clip.hardEdge,
+          padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 10.h),
+          height: 80.h,
+          decoration: BoxDecoration(
+              color: ColorsHelper.blueAccent.withOpacity(.2),
+              borderRadius: BorderRadius.circular(30)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image_widget(image: null),
+              SizedBox(
+                width: 15.w,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(doctor.user.fullName,
+                      style: StyleManager.fontBold20Black),
+                  Text_Data(text: 'Section', data: doctor.section!.sectionName)
+                ],
+              ),
+              SizedBox(
+                width: 60.w,
+              ),
+              IconButton(
+                  onPressed: () {
+                    favCubit.toggleFav(likedDoctor: doctor);
+                  },
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Colors.red.shade800,
+                  ))
+            ],
+          )),
     ),
   );
 }
 
-Widget favCon(){
+Widget favCon() {
   return Padding(
     padding: EdgeInsets.only(left: 18.w, top: 67.h, right: 18.w),
     child: Container(

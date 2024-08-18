@@ -1,17 +1,21 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/data/models/doctor_model.dart';
 import 'package:patient_app/core/helper/token_helper.dart';
 import 'package:patient_app/src/features/appointments/presentation/pages/select_appointment.dart';
-import 'package:patient_app/src/features/auth/presentation/cubit/auth_cubit.dart';
+
 import 'package:patient_app/src/features/auth/presentation/pages/login_page.dart';
 import 'package:patient_app/src/features/bottom_navigation_screen/bottom_navigation_screen.dart';
+import 'package:patient_app/src/features/doctor_profile/presentation/pages/doctor_profile.dart';
 import 'package:patient_app/src/features/patient_profile/presentation/pages/pages/patient_sessions_screen.dart';
 import 'package:patient_app/src/features/patient_profile/presentation/pages/pages/personal_information_screen.dart';
 import 'package:patient_app/src/features/patient_profile/presentation/pages/pages/session_information_screen.dart';
 import 'package:patient_app/src/features/posts/presentation/cubits/posts_cubit.dart';
 import 'package:patient_app/src/features/posts/presentation/pages/comment_screen.dart';
 import 'package:patient_app/src/features/posts/presentation/pages/new_post_screen.dart';
+import 'package:patient_app/src/features/setting/presentation/cubit/setting_cubit.dart';
+import 'package:patient_app/src/features/setting/presentation/pages/my_appointment_screen.dart';
+import 'package:patient_app/src/features/setting/presentation/pages/send_complaint_screen.dart';
+import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
 import 'package:patient_app/src/features/splash/splash_screen.dart';
 import '../../src/features/auth/presentation/pages/sign_up_page.dart';
 import '../../src/features/auth/presentation/pages/verify_code_page.dart';
@@ -33,14 +37,17 @@ class AppRouter {
   static const kSessionInformation = '$kPatientSessions/session_information';
   static const kNewPost = '/new_post';
   static const kComment = '/comment_screen';
+  static const kDoctorProfile = '/doctor_profile';
+  static const kSettings = '/settings';
+  static const kComplaint = '/complaint';
+  static const kMyAppointment = '/my_appointment';
 
   static final router = GoRouter(
     initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) =>
-        (TokenHelper.hasToken)
+        builder: (context, state) => (TokenHelper.hasToken)
             ? const SplashScreen(pushRoute: kBottomNavigationScreen)
             : const SplashScreen(pushRoute: kLogin),
       ),
@@ -126,6 +133,33 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kDoctorProfile,
+        builder: (context, state) {
+          Map<String, dynamic> data = state.extra as Map<String, dynamic>;
+          return DoctorProfile(data: data);
+        },
+      ),
+      GoRoute(
+        path: kSettings,
+        builder: (context, state) {
+          return const SettingPage();
+        },
+      ),
+      GoRoute(
+        path: kComplaint,
+        builder: (context, state) {
+          SettingCubit cubit = state.extra as SettingCubit;
+          return SendComplaintScreen(cubit: cubit);
+        },
+      ),
+      GoRoute(
+        path: kMyAppointment,
+        builder: (context, state) {
+          SettingCubit cubit = state.extra as SettingCubit;
+          return MyAppointmentScreen(cubit: cubit);
+        },
+      )
     ],
   );
   static void navigateToRingScreen(){

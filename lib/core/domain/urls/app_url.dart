@@ -46,6 +46,12 @@ class AppUrl {
   static const getCommentForPost = "${baseUrl}comments/on/post/";
   static const addComment = "${baseUrl}comments/on/post/store/";
 
+  /*>>>>>>>>>>>>>>>>>>>> Favs <<<<<<<<<<<<<<<<<<<<*/
   static const toggleFav = "${baseUrl}favorite/";
-  static const getFav='${baseUrl}favorite/mine';
+  static const getFav = '${baseUrl}favorite/mine';
+  /*>>>>>>>>>>>>>>>>>>>> Settings <<<<<<<<<<<<<<<<<<<<*/
+  static const getMyAppointment = "${baseUrl}patient/appointments";
+  static const deleteAppointment = '${baseUrl}patient/destroy/';
+  static const sendComplaint = "${baseUrl}complaints/store";
+  static const logOut = "${baseUrl}auth/logout";
 }

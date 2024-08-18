@@ -1,8 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_app/core/data/models/doctor_model.dart';
-import 'package:patient_app/core/data/models/section_model.dart';
-import 'package:patient_app/core/data/models/user_model.dart';
 part 'event_model.g.dart';
 
 @JsonSerializable()

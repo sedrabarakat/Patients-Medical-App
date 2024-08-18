@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_app/core/helper/time_helper.dart';
 import 'package:patient_app/src/features/appointments/data/models/appointment_day_date_model.dart';
@@ -29,12 +28,11 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     });
   }
 
-  Future<void> makeAppointment(int doctorId, int patientId) async {
+  Future<void> makeAppointment(int doctorId) async {
     bookAppointmetButtonState = ButtonState.loading;
     emit(MakeAppointmentLoadinState());
     final response = await _repo.makeAppointment(
         doctorId: doctorId.toString(),
-        patientId: patientId.toString(),
         date: TimeHelper.dateFormat(date: selectedDate!),
         startMin: startMin!);
     response.fold((error) {
@@ -44,13 +42,13 @@ class AppointmentCubit extends Cubit<AppointmentState> {
       bookAppointmetButtonState = ButtonState.idle;
 
       appointmentDayDateModel!.availableTimes.removeWhere(
-        (element) => element == data.data!.startMin,
+        (element) => element == data.data!,
       );
       if (appointmentDayDateModel!.availableTimes.isNotEmpty) {
         startMin = appointmentDayDateModel!.availableTimes[0];
       }
       startMin = null;
-      emit(MakeAppointmentSuccessState(data.data!));
+      emit(MakeAppointmentSuccessState());
       emit(GetAppointmentSuccessState(appointmentDayDateModel!));
     });
   }

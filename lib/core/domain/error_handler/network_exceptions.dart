@@ -16,7 +16,8 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
   const factory NetworkExceptions.requestCancelled() = RequestCancelled;
   const factory NetworkExceptions.unauthorizedRequest(String reason) =
       UnauthorizedRequest;
-  const factory NetworkExceptions.loggingInRequired() = LoggingInRequired;
+  const factory NetworkExceptions.loggingInRequired(String reason) =
+      LoggingInRequired;
 
   const factory NetworkExceptions.badRequest() = BadRequest;
 
@@ -59,7 +60,7 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
       const NetworkExceptions.defaultError(''),
       const NetworkExceptions.formatException(),
       const NetworkExceptions.internalServerError(),
-      const NetworkExceptions.loggingInRequired(),
+      const NetworkExceptions.loggingInRequired(''),
       const NetworkExceptions.methodNotAllowed(),
       const NetworkExceptions.noInternetConnection(),
       const NetworkExceptions.notFound(''),
@@ -84,7 +85,7 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
       case 401:
         return NetworkExceptions.unauthorizedRequest(error.message);
       case 403:
-        return const NetworkExceptions.loggingInRequired();
+        return NetworkExceptions.loggingInRequired(error.message);
       case 404:
         return NetworkExceptions.notFound(error.message);
       case 405:
@@ -172,8 +173,8 @@ abstract class NetworkExceptions with _$NetworkExceptions implements Exception {
           requestCancelled: () {
             errorMessage = "Request Cancelled";
           },
-          loggingInRequired: () {
-            errorMessage = "Log in First";
+          loggingInRequired: (String reason) {
+            errorMessage = reason;
           },
           internalServerError: () {
             errorMessage = "Internal Server Error";

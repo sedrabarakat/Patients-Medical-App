@@ -1,4 +1,3 @@
-import '../../../../../core/domain/error_handler/network_exceptions.dart';
 
 abstract class FavStates{}
 

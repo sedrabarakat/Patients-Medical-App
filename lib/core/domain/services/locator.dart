@@ -13,12 +13,13 @@ import 'package:patient_app/src/features/patient_profile/domain/patient_repo.dar
 import 'package:patient_app/src/features/posts/data/datasources/posts_remote_data_source.dart';
 import 'package:patient_app/src/features/posts/domain/posts_repo.dart';
 import 'package:patient_app/src/features/home/data/remote/home_remote.dart';
+import 'package:patient_app/src/features/setting/data/datasources/setting_remote_data_source.dart';
+import 'package:patient_app/src/features/setting/domain/setting_repo.dart';
 import 'package:patient_app/src/features/video_call/data/remote/pusher_services.dart';
 import 'package:patient_app/src/features/video_call/data/repos/pusher_repo_impl.dart';
 import 'package:patient_app/src/features/video_call/data/repos/schedule_repo_impl.dart';
 import 'package:patient_app/src/features/video_call/domain/pusher_repo.dart';
 import 'package:patient_app/src/features/video_call/domain/schedule_repo.dart';
-import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_cubit.dart';
 
 import '../../../src/features/video_call/data/remote/remote_schedule.dart';
 
@@ -73,10 +74,16 @@ Future locatorSetUp() async {
 
   /*>>>>>>>>>> Fav <<<<<<<<<<*/
   getIt.registerLazySingleton<FavRemote>(
-        () => FavRemote(getIt()),
+    () => FavRemote(getIt()),
   );
   getIt.registerLazySingleton<FaveRepo>(
-        () => FaveRepo(getIt()),
+    () => FaveRepo(getIt()),
+  );
+  getIt.registerLazySingleton<SettingRemoteDataSource>(
+    () => SettingRemoteDataSource(getIt()),
+  );
+  getIt.registerLazySingleton<SettingRepo>(
+    () => SettingRepo(getIt()),
   );
   getIt.registerLazySingleton<HomeRemote>(
           ()=>HomeRemote(getIt())

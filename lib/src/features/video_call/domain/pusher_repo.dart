@@ -1,7 +1,6 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import '../../../../core/domain/error_handler/network_exceptions.dart';
 import '../data/models/event_model.dart';
 

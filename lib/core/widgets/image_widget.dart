@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/helper/color_helper.dart';
 import '../../../../../core/utils/assets_manager.dart';
 import '../../../../../core/utils/style_manager.dart';
 

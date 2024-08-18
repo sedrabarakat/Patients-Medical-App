@@ -20,7 +20,7 @@ mixin _$NetworkExceptions {
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -43,7 +43,7 @@ mixin _$NetworkExceptions {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -66,7 +66,7 @@ mixin _$NetworkExceptions {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -225,7 +225,7 @@ class _$RequestCancelledImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -251,7 +251,7 @@ class _$RequestCancelledImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -277,7 +277,7 @@ class _$RequestCancelledImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -467,7 +467,7 @@ class _$UnauthorizedRequestImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -493,7 +493,7 @@ class _$UnauthorizedRequestImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -519,7 +519,7 @@ class _$UnauthorizedRequestImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -642,6 +642,8 @@ abstract class _$$LoggingInRequiredImplCopyWith<$Res> {
   factory _$$LoggingInRequiredImplCopyWith(_$LoggingInRequiredImpl value,
           $Res Function(_$LoggingInRequiredImpl) then) =
       __$$LoggingInRequiredImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String reason});
 }
 
 /// @nodoc
@@ -651,6 +653,19 @@ class __$$LoggingInRequiredImplCopyWithImpl<$Res>
   __$$LoggingInRequiredImplCopyWithImpl(_$LoggingInRequiredImpl _value,
       $Res Function(_$LoggingInRequiredImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reason = null,
+  }) {
+    return _then(_$LoggingInRequiredImpl(
+      null == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -658,35 +673,48 @@ class __$$LoggingInRequiredImplCopyWithImpl<$Res>
 class _$LoggingInRequiredImpl
     with DiagnosticableTreeMixin
     implements LoggingInRequired {
-  const _$LoggingInRequiredImpl();
+  const _$LoggingInRequiredImpl(this.reason);
+
+  @override
+  final String reason;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NetworkExceptions.loggingInRequired()';
+    return 'NetworkExceptions.loggingInRequired(reason: $reason)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-        DiagnosticsProperty('type', 'NetworkExceptions.loggingInRequired'));
+    properties
+      ..add(DiagnosticsProperty('type', 'NetworkExceptions.loggingInRequired'))
+      ..add(DiagnosticsProperty('reason', reason));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoggingInRequiredImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoggingInRequiredImpl &&
+            (identical(other.reason, reason) || other.reason == reason));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, reason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoggingInRequiredImplCopyWith<_$LoggingInRequiredImpl> get copyWith =>
+      __$$LoggingInRequiredImplCopyWithImpl<_$LoggingInRequiredImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -704,7 +732,7 @@ class _$LoggingInRequiredImpl
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
   }) {
-    return loggingInRequired();
+    return loggingInRequired(reason);
   }
 
   @override
@@ -712,7 +740,7 @@ class _$LoggingInRequiredImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -730,7 +758,7 @@ class _$LoggingInRequiredImpl
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
   }) {
-    return loggingInRequired?.call();
+    return loggingInRequired?.call(reason);
   }
 
   @override
@@ -738,7 +766,7 @@ class _$LoggingInRequiredImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -758,7 +786,7 @@ class _$LoggingInRequiredImpl
     required TResult orElse(),
   }) {
     if (loggingInRequired != null) {
-      return loggingInRequired();
+      return loggingInRequired(reason);
     }
     return orElse();
   }
@@ -847,7 +875,13 @@ class _$LoggingInRequiredImpl
 }
 
 abstract class LoggingInRequired implements NetworkExceptions {
-  const factory LoggingInRequired() = _$LoggingInRequiredImpl;
+  const factory LoggingInRequired(final String reason) =
+      _$LoggingInRequiredImpl;
+
+  String get reason;
+  @JsonKey(ignore: true)
+  _$$LoggingInRequiredImplCopyWith<_$LoggingInRequiredImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -896,7 +930,7 @@ class _$BadRequestImpl with DiagnosticableTreeMixin implements BadRequest {
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -922,7 +956,7 @@ class _$BadRequestImpl with DiagnosticableTreeMixin implements BadRequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -948,7 +982,7 @@ class _$BadRequestImpl with DiagnosticableTreeMixin implements BadRequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1134,7 +1168,7 @@ class _$NotFoundImpl with DiagnosticableTreeMixin implements NotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1160,7 +1194,7 @@ class _$NotFoundImpl with DiagnosticableTreeMixin implements NotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -1186,7 +1220,7 @@ class _$NotFoundImpl with DiagnosticableTreeMixin implements NotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1352,7 +1386,7 @@ class _$MethodNotAllowedImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1378,7 +1412,7 @@ class _$MethodNotAllowedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -1404,7 +1438,7 @@ class _$MethodNotAllowedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1565,7 +1599,7 @@ class _$NotAcceptableImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1591,7 +1625,7 @@ class _$NotAcceptableImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -1617,7 +1651,7 @@ class _$NotAcceptableImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1778,7 +1812,7 @@ class _$RequestTimeoutImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1804,7 +1838,7 @@ class _$RequestTimeoutImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -1830,7 +1864,7 @@ class _$RequestTimeoutImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1989,7 +2023,7 @@ class _$SendTimeoutImpl with DiagnosticableTreeMixin implements SendTimeout {
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2015,7 +2049,7 @@ class _$SendTimeoutImpl with DiagnosticableTreeMixin implements SendTimeout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -2041,7 +2075,7 @@ class _$SendTimeoutImpl with DiagnosticableTreeMixin implements SendTimeout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2231,7 +2265,7 @@ class _$UnprocessableEntityImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2257,7 +2291,7 @@ class _$UnprocessableEntityImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -2283,7 +2317,7 @@ class _$UnprocessableEntityImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2447,7 +2481,7 @@ class _$ConflictImpl with DiagnosticableTreeMixin implements Conflict {
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2473,7 +2507,7 @@ class _$ConflictImpl with DiagnosticableTreeMixin implements Conflict {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -2499,7 +2533,7 @@ class _$ConflictImpl with DiagnosticableTreeMixin implements Conflict {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2661,7 +2695,7 @@ class _$InternalServerErrorImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2687,7 +2721,7 @@ class _$InternalServerErrorImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -2713,7 +2747,7 @@ class _$InternalServerErrorImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2874,7 +2908,7 @@ class _$NotImplementedImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2900,7 +2934,7 @@ class _$NotImplementedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -2926,7 +2960,7 @@ class _$NotImplementedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -3087,7 +3121,7 @@ class _$ServiceUnavailableImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -3113,7 +3147,7 @@ class _$ServiceUnavailableImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -3139,7 +3173,7 @@ class _$ServiceUnavailableImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -3301,7 +3335,7 @@ class _$NoInternetConnectionImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -3327,7 +3361,7 @@ class _$NoInternetConnectionImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -3353,7 +3387,7 @@ class _$NoInternetConnectionImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -3514,7 +3548,7 @@ class _$FormatExceptionImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -3540,7 +3574,7 @@ class _$FormatExceptionImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -3566,7 +3600,7 @@ class _$FormatExceptionImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -3727,7 +3761,7 @@ class _$UnableToProcessImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -3753,7 +3787,7 @@ class _$UnableToProcessImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -3779,7 +3813,7 @@ class _$UnableToProcessImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -3965,7 +3999,7 @@ class _$DefaultErrorImpl with DiagnosticableTreeMixin implements DefaultError {
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -3991,7 +4025,7 @@ class _$DefaultErrorImpl with DiagnosticableTreeMixin implements DefaultError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -4017,7 +4051,7 @@ class _$DefaultErrorImpl with DiagnosticableTreeMixin implements DefaultError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -4183,7 +4217,7 @@ class _$UnexpectedErrorImpl
   TResult when<TResult extends Object?>({
     required TResult Function() requestCancelled,
     required TResult Function(String reason) unauthorizedRequest,
-    required TResult Function() loggingInRequired,
+    required TResult Function(String reason) loggingInRequired,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -4209,7 +4243,7 @@ class _$UnexpectedErrorImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
     TResult? Function(String reason)? unauthorizedRequest,
-    TResult? Function()? loggingInRequired,
+    TResult? Function(String reason)? loggingInRequired,
     TResult? Function()? badRequest,
     TResult? Function(String reason)? notFound,
     TResult? Function()? methodNotAllowed,
@@ -4235,7 +4269,7 @@ class _$UnexpectedErrorImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
     TResult Function(String reason)? unauthorizedRequest,
-    TResult Function()? loggingInRequired,
+    TResult Function(String reason)? loggingInRequired,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,

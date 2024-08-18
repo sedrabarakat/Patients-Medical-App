@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/domain/services/api_service.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/src/features/video_call/data/models/event_model.dart';
