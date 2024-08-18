@@ -76,12 +76,12 @@ class SelectAppointmentScreen extends StatelessWidget {
                         BlocProvider.of<AppointmentCubit>(context)
                             .getAppointmentInSpecificDayAndDate(doctor.id);
                       },
-                      onCalenderIniti: (day) {
-                        BlocProvider.of<AppointmentCubit>(context)
-                            .selectedDate = day;
-                        BlocProvider.of<AppointmentCubit>(context)
-                            .getAppointmentInSpecificDayAndDate(doctor.id);
-                      },
+                        onCalenderIniti: (day) {
+                          BlocProvider.of<AppointmentCubit>(context)
+                              .selectedDate = day;
+                          BlocProvider.of<AppointmentCubit>(context)
+                              .getAppointmentInSpecificDayAndDate(doctor.id);
+                        },
                     ),
                     const SizedBox(
                       height: AppSize.s20,
