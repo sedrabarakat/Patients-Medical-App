@@ -92,7 +92,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           BottomBarItem(
             inActiveItem: Icon(Icons.library_books_rounded),
             activeItem: Icon(
-              Icons.settings,
+              Icons.library_books_rounded,
               color: ColorsHelper.white,
             ),
             itemLabel: 'Posts',

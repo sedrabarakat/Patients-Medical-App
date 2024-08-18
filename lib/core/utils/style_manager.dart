@@ -34,6 +34,13 @@ abstract class StyleManager {
   );
 
   /*>>>>>>>>>> Bold <<<<<<<<<<*/
+  static  TextStyle fontBold20white = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Poppins-bold',
+    color: ColorsHelper.black,
+  );
+
   static TextStyle fontBold60 = TextStyle(
       fontSize: 30.sp,
       fontWeight: FontWeight.bold,
@@ -175,4 +182,44 @@ abstract class StyleManager {
       color: color,
     );
   }
+  ///boxshadows
+  static BoxShadow shadow =BoxShadow(
+    color: Colors.black.withOpacity(0.25),
+    spreadRadius: 3,
+    blurRadius: 10,
+    offset: Offset(3, 7),
+  );
+
+  static BoxDecoration GryShadow20=BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.25),
+          spreadRadius: 3,
+          blurRadius: 10,
+          offset: Offset(3, 7),
+        ),
+      ],
+      color: Colors.grey.shade200,
+      borderRadius: BorderRadius.circular(20));
+
+  ///gardinates
+  static LinearGradient indigoGradients= LinearGradient(
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight,
+      colors: [
+        ColorsHelper.primary,
+        Colors.indigoAccent.withOpacity(.9),
+        Colors.indigoAccent.withOpacity(.8),
+        Colors.indigoAccent.withOpacity(.7),
+      ]);
+
+  static LinearGradient purbleGradients=LinearGradient(
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight,
+      colors: [
+
+        Colors.blueAccent.withOpacity(.4),
+        Colors.blueAccent.withOpacity(.3),
+        Colors.blueAccent.withOpacity(.2),
+      ]);
 }

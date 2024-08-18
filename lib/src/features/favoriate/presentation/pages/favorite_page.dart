@@ -11,24 +11,37 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBarS(title: "My Favorite"),
-      body: Column(
-        children: [
-          Stack(
-            children: [
-            Padding(
-              padding: EdgeInsets.only(top: 25.h),
-                child: Image.asset(AssetsManager.favorite,)),
-            ClipPathContainer(),
-          ],),
-          Expanded(
-            child: ListView.separated(
-                itemBuilder: (ctx,index)=>doctorCell(context: ctx),
-                separatorBuilder: (ctx,index)=>SizedBox(),
-                itemCount: 10),
-          )
-        ],
+    return BlocProvider(
+      create: (context)=>FavCubit(getIt())..getFav(),
+      child: BlocConsumer<FavCubit,FavStates>(
+        listener: (context,state){},
+        builder: (context,state){
+          FavCubit favCubit=FavCubit.get(context);
+          return Scaffold(
+              appBar: appBarS(title: "My Favorite"),
+              body: Column(
+                children: [
+                  Stack(
+                    children: [
+                      favCon(),
+                      Padding(
+                        padding: EdgeInsets.only(left: 200.w,top: 40.h),
+                          child: Image.asset(AssetsManager.login,width: 200.w,)),
+                      ClipPathContainer(),
+                    ],
+                  ),
+                  SizedBox(height: 10.h,),
+                  if(favCubit.list.length>0)
+                  Expanded(
+                    child: ListView.separated(
+                        itemBuilder: (ctx, index) => doctorCell(context: ctx,
+                            doctor: favCubit.list[index]),
+                        separatorBuilder: (ctx, index) => SizedBox(),
+                        itemCount: favCubit.list.length),
+                  )
+                ],
+              ));
+        },
       )
     );
   }

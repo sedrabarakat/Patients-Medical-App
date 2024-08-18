@@ -39,7 +39,8 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => (TokenHelper.hasToken)
+        builder: (context, state) =>
+        (TokenHelper.hasToken)
             ? const SplashScreen(pushRoute: kBottomNavigationScreen)
             : const SplashScreen(pushRoute: kLogin),
       ),

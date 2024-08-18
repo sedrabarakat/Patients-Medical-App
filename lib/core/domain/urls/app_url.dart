@@ -45,4 +45,7 @@ class AppUrl {
   static const likePost = "${baseUrl}post/togglePost/";
   static const getCommentForPost = "${baseUrl}comments/on/post/";
   static const addComment = "${baseUrl}comments/on/post/store/";
+
+  static const toggleFav = "${baseUrl}favorite/";
+  static const getFav='${baseUrl}favorite/mine';
 }

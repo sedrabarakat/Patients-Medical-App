@@ -6,11 +6,13 @@ import 'package:patient_app/src/features/appointments/data/datasources/appointme
 import 'package:patient_app/src/features/appointments/domain/appointment_repo.dart';
 import 'package:patient_app/src/features/auth/data/data_source/remote/auth_remote_data_source.dart';
 import 'package:patient_app/src/features/auth/domain/repositories/auth_repository.dart';
-import 'package:patient_app/src/features/home/data/remote/home_remote.dart';
+import 'package:patient_app/src/features/favoriate/data/fav_remote/fav_remote.dart';
+import 'package:patient_app/src/features/favoriate/data/fav_repo/fave_repo.dart';
 import 'package:patient_app/src/features/patient_profile/data/datasource/patient_remote_data_source.dart';
 import 'package:patient_app/src/features/patient_profile/domain/patient_repo.dart';
 import 'package:patient_app/src/features/posts/data/datasources/posts_remote_data_source.dart';
 import 'package:patient_app/src/features/posts/domain/posts_repo.dart';
+import 'package:patient_app/src/features/home/data/remote/home_remote.dart';
 import 'package:patient_app/src/features/video_call/data/remote/pusher_services.dart';
 import 'package:patient_app/src/features/video_call/data/repos/pusher_repo_impl.dart';
 import 'package:patient_app/src/features/video_call/data/repos/schedule_repo_impl.dart';
@@ -67,6 +69,15 @@ Future locatorSetUp() async {
     () => PostsRepo(getIt()),
   );
   /*>>>>>>>>>> Home <<<<<<<<<<*/
+  getIt.registerLazySingleton<HomeRemote>(() => HomeRemote(getIt()));
+
+  /*>>>>>>>>>> Fav <<<<<<<<<<*/
+  getIt.registerLazySingleton<FavRemote>(
+        () => FavRemote(getIt()),
+  );
+  getIt.registerLazySingleton<FaveRepo>(
+        () => FaveRepo(getIt()),
+  );
   getIt.registerLazySingleton<HomeRemote>(
           ()=>HomeRemote(getIt())
   );

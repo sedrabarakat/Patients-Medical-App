@@ -34,7 +34,6 @@ class PatientApp extends StatelessWidget {
       child: BlocListener<PusherCubit, PusherStates>(
         listener: (context, state) {
           if (state is Recive_EventState) {
-            print('ssssssssssssssssssssssssssssssssssssssssssssssssssss');
             context.go(AppRouter.kRingScreen);
           }
         },
