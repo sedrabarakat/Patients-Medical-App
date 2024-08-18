@@ -38,7 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
   final TextEditingController descriptionController = TextEditingController();
   late int age;
   Uint8List? pickedProfileImage;
-
+  PatientModel? userData;
   late String birthdayDate = '';
   String selectedMaritalStatus = 'None';
   String selectedBloodType = 'A+';
@@ -96,7 +96,6 @@ class AuthCubit extends Cubit<AuthState> {
   //sign up
 
   Future<void> register() async {
-    print(habitsController.text.isEmpty);
     registerButtonState = ButtonState.loading;
     emit(SignUpLoadingState());
     List<String> names = splitName(fullNameController.text);
@@ -134,6 +133,21 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
+  Future<void> getMyInformation() async {
+    emit(GetMyInformationLoadingState());
+    final response = await _repo.getMyInformation();
+    response.fold(
+      (error) {
+        print(NetworkExceptions.getErrorMessage(error));
+        emit(GetMyInformationErrorState(error));
+      },
+      (data) {
+        userData = data.data!;
+        emit(GetMyInformationSuccessState(data.data!));
+      },
+    );
+  }
+
   Future<void> toSelectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -168,7 +182,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   List<String> splitName(String fullName) {
-    String fullName = "omar ammar fostok";
     List<String> names = fullName.split(' ');
     return names;
   }

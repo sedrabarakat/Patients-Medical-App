@@ -9,9 +9,11 @@ class TimeTile extends StatelessWidget {
     this.width = 80,
     required this.isSelected,
     required this.onTap,
+    required this.time,
   });
   final double width;
   final bool isSelected;
+  final String time;
   final void Function() onTap;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class TimeTile extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "10 - 11",
+            time,
             style: StyleManager.fontMedium16White.copyWith(
               color: isSelected ? ColorsHelper.white : ColorsHelper.black,
             ),

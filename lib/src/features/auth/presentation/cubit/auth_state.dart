@@ -43,9 +43,19 @@ final class SignUpFailureState extends AuthState {
   SignUpFailureState({required this.error});
 }
 
+final class GetMyInformationLoadingState extends AuthState {}
+
+final class GetMyInformationSuccessState extends AuthState {
+  final PatientModel myInformation;
+  GetMyInformationSuccessState(this.myInformation);
+}
+
+final class GetMyInformationErrorState extends AuthState {
+  final NetworkExceptions error;
+  GetMyInformationErrorState(this.error);
+}
 
 final class MaritalStatusSelectedState extends AuthState {}
-
 
 class FinishTimeState extends AuthState {}
 

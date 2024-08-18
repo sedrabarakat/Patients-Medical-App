@@ -5,10 +5,10 @@ import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
 import 'package:patient_app/src/features/favoriate/presentation/pages/favorite_page.dart';
 import 'package:patient_app/src/features/home/presentation/pages/home_screen_content.dart';
-import 'package:patient_app/src/features/patient_profile/presentation/pages/patient_profile_page.dart';
+import 'package:patient_app/src/features/patient_profile/presentation/pages/pages/patient_profile_page.dart';
+import 'package:patient_app/src/features/posts/presentation/pages/posts_screen.dart';
 import 'package:patient_app/src/features/setting/presentation/pages/setting_page.dart';
 import 'package:patient_app/src/features/video_call/presentation/screens/calles_list.dart';
-import 'package:patient_app/src/features/video_call/presentation/screens/video_call.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
@@ -26,7 +26,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     const FavoritePage(),
     const CallesList(),
     const PatientProfilePage(),
-    const SettingPage(),
+    const PostsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -90,12 +90,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             itemLabel: 'Profile',
           ),
           BottomBarItem(
-            inActiveItem: Icon(Icons.settings),
+            inActiveItem: Icon(Icons.library_books_rounded),
             activeItem: Icon(
               Icons.settings,
               color: ColorsHelper.white,
             ),
-            itemLabel: 'Settings',
+            itemLabel: 'Posts',
           ),
         ],
         onTap: (index) {

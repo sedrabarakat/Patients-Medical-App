@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/icon_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
+import 'package:patient_app/src/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../core/helper/dimension_manager.dart';
 
@@ -40,7 +42,7 @@ class Header extends StatelessWidget {
               IconButton(
                 icon: IconManager.notificationIcon,
                 onPressed: () {
-                  context.push(AppRouter.kSelectAppointment);
+                  BlocProvider.of<AuthCubit>(context).getMyInformation();
                 },
               ),
             ),

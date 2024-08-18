@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_app/src/features/patient_profile/presentation/pages/cubit/upload_download_cubit.dart';
 import '../urls/app_url.dart';
 
 import 'api_service.dart';
@@ -92,6 +94,34 @@ class ApiServicesImp implements ApiServices {
     }
   }
 
+  Future downloadFile(
+    BuildContext context,
+    String path,
+    String savePath,
+    int fileId, {
+    Map<String, dynamic>? queryParams,
+    Map<String, dynamic>? body,
+    FormData? formData,
+  }) async {
+    try {
+      await setHeaders();
+      await _dio.download(
+        path,
+        savePath,
+        onReceiveProgress: (count, total) {
+          double progress = (count / total);
+
+          BlocProvider.of<DownloadCubit>(context)
+              .downloadingFileProgress(progress, fileId);
+        },
+      );
+
+      return null;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
   @override
   Future postFiles(
     BuildContext context,
@@ -112,7 +142,7 @@ class ApiServicesImp implements ApiServices {
           onSendProgress: (sent, total) {
         if (total != -1) {
           // var progress = (sent / total * 100).toStringAsFixed(0);
-          //Todo handle the progress ui
+
           // BlocProvider.of<UploadManagerCubit>(context)
           //     .uploadFile(key: key, progress: progress);
         }

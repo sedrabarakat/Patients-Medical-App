@@ -34,11 +34,11 @@ abstract class StyleManager {
   );
 
   /*>>>>>>>>>> Bold <<<<<<<<<<*/
-  static TextStyle fontBold60= TextStyle(
-      fontSize: 30.sp,fontWeight: FontWeight.bold,
+  static TextStyle fontBold60 = TextStyle(
+      fontSize: 30.sp,
+      fontWeight: FontWeight.bold,
       color: ColorsHelper.white,
-      fontFamily: 'Lobster-Regular'
-  );
+      fontFamily: 'Lobster-Regular');
   static const TextStyle fontBold40White = TextStyle(
     fontFamily: 'Poppins-bold',
     color: ColorsHelper.white,
@@ -57,12 +57,22 @@ abstract class StyleManager {
     fontFamily: 'Poppins-bold',
     color: ColorsHelper.black,
   );
+  static TextStyle fontBold18 = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: ColorsHelper.black,
+  );
   static TextStyle fontBold16Black = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,
     color: ColorsHelper.black,
   );
   /*>>>>>>>>>> Medium <<<<<<<<<<*/
+  static TextStyle fontMedium18 = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: Colors.black54,
+  );
   static TextStyle fontMedium16White = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -151,7 +161,6 @@ abstract class StyleManager {
     return BoxDecoration(
       shape: BoxShape.circle,
       color: color,
-
     );
   }
 }

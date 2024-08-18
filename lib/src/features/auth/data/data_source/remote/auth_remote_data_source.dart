@@ -28,10 +28,9 @@ class AuthRemoteDataSource {
       'phone_number': phoneNumber,
       'code': code,
     });
-    await HiveService.Auth_Box!.put('Token',response['token']);
+    await HiveService.Auth_Box!.put('Token', response['token']);
     DioHelper().addTokenInterceptor();
-    return BaseModel.fromJson(
-        response, (json) => UserModel.fromJson(json));
+    return BaseModel.fromJson(response, (json) => UserModel.fromJson(json));
   }
 
   Future<BaseModel<PatientModel>> register({
@@ -82,6 +81,11 @@ class AuthRemoteDataSource {
         },
       ),
     );
+    return BaseModel.fromJson(response, (json) => PatientModel.fromJson(json));
+  }
+
+  Future<BaseModel<PatientModel>> getMyInformation() async {
+    final response = await _apiServices.get(AppUrl.getMyInformation);
     return BaseModel.fromJson(response, (json) => PatientModel.fromJson(json));
   }
 }

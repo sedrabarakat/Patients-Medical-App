@@ -14,11 +14,13 @@ class PatientModel {
   @JsonKey(name: 'marital_status')
   final String maritalStatus;
   final String? habits;
-  final bool proffesion;
+  final String proffesion;
+  @JsonKey(name: 'children_num')
+  final int? childrenNum;
   final bool diabetes;
   @JsonKey(name: 'blood_pressure')
-  final String bloodPressure;
-  final String wallet;
+  final bool bloodPressure;
+  final int wallet;
   @JsonKey(name: 'user_id')
   final int userId;
 
@@ -40,10 +42,9 @@ class PatientModel {
     required this.userId,
     required this.wallet,
     this.habits,
+    this.childrenNum,
   });
   factory PatientModel.fromJson(Map<String, dynamic> json) =>
       _$PatientModelFromJson(json);
   Map<String, dynamic> toJson() => _$PatientModelToJson(this);
 }
-
-

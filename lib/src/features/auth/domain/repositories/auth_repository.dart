@@ -23,8 +23,8 @@ class AuthRepository {
     }
   }
 
-  Future<Either<NetworkExceptions, BaseModel<UserModel>>>
-      verifyCode(String phoneNumber, String code) async {
+  Future<Either<NetworkExceptions, BaseModel<UserModel>>> verifyCode(
+      String phoneNumber, String code) async {
     try {
       final response =
           await _authRemoteDataSource.verifiyCode(phoneNumber, code);
@@ -75,6 +75,16 @@ class AuthRepository {
         description: description,
         image: image,
       );
+      return right(response);
+    } catch (error) {
+      return left(NetworkExceptions.getException(error));
+    }
+  }
+
+  Future<Either<NetworkExceptions, BaseModel<PatientModel>>>
+      getMyInformation() async {
+    try {
+      final response = await _authRemoteDataSource.getMyInformation();
       return right(response);
     } catch (error) {
       return left(NetworkExceptions.getException(error));

@@ -2,8 +2,14 @@ import 'package:get_it/get_it.dart';
 import 'package:patient_app/core/domain/services/api_service.dart';
 import 'package:patient_app/core/domain/services/api_services_impl.dart';
 import 'package:patient_app/core/helper/dio_helper.dart';
+import 'package:patient_app/src/features/appointments/data/datasources/appointment_remote_data_source.dart';
+import 'package:patient_app/src/features/appointments/domain/appointment_repo.dart';
 import 'package:patient_app/src/features/auth/data/data_source/remote/auth_remote_data_source.dart';
 import 'package:patient_app/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:patient_app/src/features/patient_profile/data/datasource/patient_remote_data_source.dart';
+import 'package:patient_app/src/features/patient_profile/domain/patient_repo.dart';
+import 'package:patient_app/src/features/posts/data/datasources/posts_remote_data_source.dart';
+import 'package:patient_app/src/features/posts/domain/posts_repo.dart';
 import 'package:patient_app/src/features/video_call/data/remote/pusher_services.dart';
 import 'package:patient_app/src/features/video_call/data/repos/pusher_repo_impl.dart';
 import 'package:patient_app/src/features/video_call/data/repos/schedule_repo_impl.dart';
@@ -40,10 +46,28 @@ Future locatorSetUp() async {
   );
 
   /*>>>>>>>>>> Schedule <<<<<<<<<<*/
-  getIt.registerLazySingleton<RemoteSchedule>(
-      ()=>RemoteSchedule(getIt())
+  getIt.registerLazySingleton<RemoteSchedule>(() => RemoteSchedule(getIt()));
+  getIt.registerLazySingleton<ScheduleRepo>(() => ScheduleRepoImpl(getIt()));
+  /*>>>>>>>>>> Patient <<<<<<<<<<*/
+  getIt.registerLazySingleton<PatientRemoteDataSource>(
+    () => PatientRemoteDataSource(getIt()),
   );
-  getIt.registerLazySingleton<ScheduleRepo>(
-          ()=>ScheduleRepoImpl(getIt())
+  getIt.registerLazySingleton<PatientRepo>(
+    () => PatientRepo(getIt()),
+    /*>>>>>>>>>> Appointment <<<<<<<<<<*/
+  );
+  getIt.registerLazySingleton<AppointmentRemoteDataSource>(
+    () => AppointmentRemoteDataSource(getIt()),
+  );
+  getIt.registerLazySingleton<AppointmentRepo>(
+    () => AppointmentRepo(getIt()),
+  );
+
+  /*>>>>>>>>>> Posts <<<<<<<<<<*/
+  getIt.registerLazySingleton<PostsRemoteDataSource>(
+    () => PostsRemoteDataSource(getIt()),
+  );
+  getIt.registerLazySingleton<PostsRepo>(
+    () => PostsRepo(getIt()),
   );
 }

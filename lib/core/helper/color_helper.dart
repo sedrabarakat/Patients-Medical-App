@@ -5,12 +5,14 @@ class ColorsHelper {
 
   static const primary = Color(0XFF2A2AC0);
   static const primaryDark = Color(0XFF181461);
+  static const primaryLight = Color(0XFF4A4AC0);
   static Color tealLightDark = Color(0xFFA9A9E5);
   // static const primaryDark = Color(0XFF181461);
   static const white = Color(0xFFFFFFFF);
   static const black = Colors.black;
   static const grey = Colors.grey;
   static const lighGrey = Color(0xFFAEAEAE);
+  static const lightestGrey = Color.fromARGB(255, 220, 220, 220);
 
   static const Color blueLightest = Color(0xFFBCC7F2); // Lightest blue
   static const Color blueLighter = Color(0xFF8F9FE6); // Lighter blue
@@ -25,6 +27,7 @@ class ColorsHelper {
   static const Color Skyblue = Color(0xFF1C92D2); // Blue
   static const Color blueAccent = Colors.blueAccent;
   static const Color blue = Colors.blue;
+  static const turquoise = Color(0XFF2AC0A2);
 
   ///text
   static const textFieldColor = Color(0XFF2A2AC0);
