@@ -3,6 +3,7 @@ import 'package:patient_app/core/helper/color_helper.dart';
 
 import '../../../../../core/helper/dimension_manager.dart';
 import '../../../../../core/utils/style_manager.dart';
+import '../../../../../core/widgets/image_widget.dart';
 
 class SectionCategory extends StatelessWidget {
   final String imageUrl;
@@ -30,11 +31,8 @@ class SectionCategory extends StatelessWidget {
               isSelected ? ColorsHelper.primary : ColorsHelper.white,
           child: IconButton(
               onPressed: onTap,
-              icon: Image.asset(
-                imageUrl,
-                fit: BoxFit.cover,
-              )),
-        ),
+              icon: network_image_widget( image: imageUrl)
+        ),),
         Text(title,
             style: isSelected
                 ? StyleManager.fontRegular16primary

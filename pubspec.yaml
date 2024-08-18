@@ -84,6 +84,8 @@ dependencies:
   flutter_custom_clippers: ^2.1.0
   path_provider: ^2.1.4
   open_file: ^3.3.2
+  searchbar_animation: ^0.0.4
+  image_network: ^2.5.4+1
 
 
 

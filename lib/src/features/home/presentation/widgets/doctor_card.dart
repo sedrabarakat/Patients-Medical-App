@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/src/features/home/data/model/doctor.dart';
+import 'package:patient_app/core/data/models/doctor_model.dart';
+
+import '../../../../../core/widgets/image_widget.dart';
 
 class DoctorCard extends StatelessWidget {
-  final Doctor doctor;
+  final DoctorModel doctor;
 
   const DoctorCard({super.key, required this.doctor});
 
@@ -12,16 +14,13 @@ class DoctorCard extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          child: Image.asset(
-            doctor.imageUrl,
-            fit: BoxFit.cover,
-          ),
+          child: network_image_widget(image: doctor.user.image),
         ),
-        title: Text(doctor.name),
+        title: Text('${doctor.user.firstName} ${doctor.user.lastName}'),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(doctor.specialty),
+            Text(doctor.section!.sectionName),
           ],
         ),
       ),

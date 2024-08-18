@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:patient_app/src/features/home/data/model/slider_model.dart';
 import 'package:patient_app/src/features/home/presentation/widgets/featured_doctor.dart';
-import 'package:patient_app/src/features/home/data/model/doctor.dart';
 
 class AutoScrollPageView extends StatefulWidget {
-  final List<Doctor> doctors;
+  final List<SliderModel> sliders;
 
-  const AutoScrollPageView({super.key, required this.doctors});
+  const AutoScrollPageView({super.key, required this.sliders});
 
   @override
   AutoScrollPageViewState createState() => AutoScrollPageViewState();
@@ -26,7 +26,7 @@ class AutoScrollPageViewState extends State<AutoScrollPageView> {
     _timer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
       setState(() {
         if (_isForward) {
-          if (_currentPage < widget.doctors.length - 1) {
+          if (_currentPage < widget.sliders.length - 1) {
             _currentPage++;
           } else {
             _isForward = false;
@@ -66,9 +66,9 @@ class AutoScrollPageViewState extends State<AutoScrollPageView> {
       child: PageView.builder(
         controller: _pageController,
         scrollDirection: Axis.horizontal,
-        itemCount: widget.doctors.length,
+        itemCount: widget.sliders.length,
         itemBuilder: (BuildContext context, int index) {
-          return FeaturedDoctor(doctor: widget.doctors[index]);
+          return FeaturedDoctor(slider: widget.sliders[index]);
         },
         onPageChanged: (int page) {
           setState(() {

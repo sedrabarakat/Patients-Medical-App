@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/data/models/section_model.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
 import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/src/features/home/presentation/cubit/home_cubit.dart';
@@ -9,7 +10,8 @@ import '../../../../../core/helper/dimension_manager.dart';
 import '../../../../../core/utils/style_manager.dart';
 
 class SectionCategories extends StatefulWidget {
-  const SectionCategories({super.key});
+  final List<SectionModel>  sectionModels ;
+  const SectionCategories({super.key, required this.sectionModels});
 
   @override
   State<SectionCategories> createState() => _SectionCategoriesState();
@@ -42,8 +44,8 @@ class _SectionCategoriesState extends State<SectionCategories> {
           height: DimensionsHelper.screenHeight(context) / 7,
           child: ListView.separated(
             itemBuilder: (context, index) => SectionCategory(
-              imageUrl: 'assets/images/heart.png',
-              title: AppLocalizations.of(context)!.cardiology,
+              imageUrl: widget.sectionModels[index].image,
+              title: widget.sectionModels[index].sectionName,
               isSelected: index == selectedCategoryIndex,
               onTap: () {
                 setState(

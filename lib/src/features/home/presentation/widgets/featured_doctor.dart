@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
+import 'package:patient_app/src/features/home/data/model/slider_model.dart';
 
 import '../../../../../core/utils/padding_manager.dart';
-import '../../data/model/doctor.dart';
+import '../../../../../core/widgets/image_widget.dart';
 
 class FeaturedDoctor extends StatelessWidget {
-  final Doctor doctor;
+  final SliderModel slider;
 
-  const FeaturedDoctor({super.key, required this.doctor});
+  const FeaturedDoctor({super.key, required this.slider});
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +23,13 @@ class FeaturedDoctor extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(doctor.name, style: StyleManager.fontBold24Black),
-                Text(doctor.specialty),
+                Text(slider.title, style: StyleManager.fontBold24Black),
               ],
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Image.asset(
-              //this image will become from doctor model, this now just for testing
-              'assets/images/doctor.png',
-              fit: BoxFit.cover,
-            ),
+            child: network_image_widget( image: slider.image,)
           ),
         ],
       ),

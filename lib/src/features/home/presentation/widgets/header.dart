@@ -1,31 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/data/models/patient_model.dart';
 import 'package:patient_app/core/languages/app_localizations.dart';
-import 'package:patient_app/core/routing/app_router.dart';
 import 'package:patient_app/core/helper/color_helper.dart';
-import 'package:patient_app/core/utils/icon_manager.dart';
 import 'package:patient_app/core/utils/style_manager.dart';
-import 'package:patient_app/src/features/auth/presentation/cubit/auth_cubit.dart';
-
 import '../../../../../core/helper/dimension_manager.dart';
+import '../../../../../core/widgets/search_field.dart';
 
 class Header extends StatelessWidget {
-  const Header({super.key});
+  final PatientModel patient;
+
+  const Header({super.key, required this.patient});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppLocalizations.of(context)!.welcomeBack,
+            RichText(
+                text: const TextSpan(
+              text: 'Welcome Back..',
               style: StyleManager.fontRegular16Black,
-            ),
-            Text("Ms.tuna", style: StyleManager.fontExtraBold20Black),
+            )),
+            Text(
+                patient.gender == 'female'
+                    ? 'Ms.${patient.userData.firstName} ${patient.userData.lastName}'
+                    : 'Mr.${patient.userData.firstName} ${patient.userData.lastName}',
+                style: StyleManager.fontExtraBold20Black),
+            searchIcon(context)
           ],
         ),
         Row(
@@ -40,10 +46,8 @@ class Header extends StatelessWidget {
             ),
             _circularIconWithRadius(
               IconButton(
-                icon: const Icon(Icons.settings),
+                icon: IconManager.notificationIcon,
                 onPressed: () {
-                  context.push(AppRouter.kSettings);
-                  //todo remove this
                   BlocProvider.of<AuthCubit>(context).getMyInformation();
                 },
               ),

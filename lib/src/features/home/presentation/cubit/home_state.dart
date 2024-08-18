@@ -37,7 +37,48 @@ class SectionCategorySelected extends HomeState{
   List<Object> get props => [selectedSectionCategoryIndex] ;
 }
 class Loading_getPatientInfo extends HomeState{}
-class Success_getPatientInfo extends HomeState{}
+class Success_getPatientInfo extends HomeState{
+  final PatientModel patientModel ;
+
+  Success_getPatientInfo(this.patientModel);
+}
 class Error_getPatientInfo extends HomeState{}
+
+class GetSectionsLoadingState extends HomeState {}
+
+class GetSectionsSuccessState extends HomeState {
+  final List<SectionModel> sections;
+  GetSectionsSuccessState(this.sections);
+}
+
+class GetSectionsErrorState extends HomeState {
+  final NetworkExceptions error;
+  GetSectionsErrorState(this.error);
+}
+
+class GetSectionInformationLoadingState extends HomeState {}
+
+class GetSectionInformationErrorState extends HomeState {
+  final NetworkExceptions error;
+  GetSectionInformationErrorState(this.error);
+}
+
+class GetSectionInformationSuccessState extends HomeState {
+  final SectionModel section;
+  GetSectionInformationSuccessState(this.section);
+}
+
+class GetSlidersLoadingState extends HomeState {}
+
+class GetSlidersSuccessState extends HomeState {
+  final List<SliderModel> sliders;
+  GetSlidersSuccessState(this.sliders);
+}
+
+class GetSlidersErrorState extends HomeState {
+  final NetworkExceptions error;
+  GetSlidersErrorState(this.error);
+}
+
 
 

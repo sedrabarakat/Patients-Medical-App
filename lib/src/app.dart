@@ -9,7 +9,7 @@ import 'package:patient_app/src/features/auth/presentation/cubit/auth_cubit.dart
 import 'package:patient_app/src/features/video_call/presentation/cubits/apis_cubit/schedule_list_cubit.dart';
 import 'package:patient_app/src/features/video_call/presentation/cubits/pusher/pusher_states.dart';
 import '../core/domain/services/locator.dart';
-import 'features/home/domain/repositories/doctor_repository.dart';
+import 'features/home/domain/repositories/home_repository.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
 import 'features/navigator_bar/presentation/cubit/bottom_nav_cubit.dart';
 import 'features/video_call/presentation/cubits/agora/video_call_cubit.dart';
@@ -28,7 +28,10 @@ class PatientApp extends StatelessWidget {
         BlocProvider(create: (context) => VideoCallCubit()),
         BlocProvider(create: (context) => AuthCubit(getIt())),
         BlocProvider(
-          create: (context) => HomeCubit(DoctorRepository(getIt()))..fetchDoctor()..getDoctorInfo(),
+          /*create: (context) => HomeCubit(DoctorRepository(getIt()))..fetchDoctor()..getDoctorInfo(),*/
+          create: (context) => HomeCubit(HomeRepository(getIt()))
+            ..getSections()
+            ..getPatientInfo(),
         ),
       ],
       child: BlocListener<PusherCubit, PusherStates>(
